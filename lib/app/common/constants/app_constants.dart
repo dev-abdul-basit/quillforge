@@ -52,7 +52,7 @@ class AppConstants {
 
   /// ADD NOTES  SCREEN CONSTANT ------------------------
   static const title = "Title..";
-  static const hint = "Enter or paste text here";
+  static const hintEnterOrPasteTextHere = "Enter or paste text here";
   static const askingChatGpt = "Ask ChatGPT to write anything...";
   static const joke = "Can you tell me a joke?";
   static const timeManagement = "Time Management Tips";

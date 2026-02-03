@@ -14,7 +14,7 @@ class ColorCodes {
   static const Color pink = Color(0xffD4145A);
   static const Color blueGray = Color(0xff53787D);
 
-  static const Color black = Colors.black;
+  static const Color black = Color(0xff28282B);
   static const Color white = Colors.white;
   static const Color grey = Colors.grey;
   static const Color red = Colors.red;
@@ -24,7 +24,10 @@ class ColorCodes {
 
   /// Theme Color
   static Color get primary => Get.theme.colorScheme.primary;
+
   static Color get onPrimary => Get.theme.colorScheme.onPrimary;
+
   static Color get background => Get.theme.colorScheme.background;
+
   static Color get surface => Get.theme.colorScheme.surface;
 }
