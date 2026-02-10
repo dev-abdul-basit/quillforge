@@ -13,6 +13,8 @@ import 'package:ainotes/app/modules/home/widget/delete_note_dialogbox.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 import 'package:intl/intl.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class FavouriteView extends GetView<FavouriteController> {
   const FavouriteView({super.key});
 
@@ -20,11 +22,11 @@ class FavouriteView extends GetView<FavouriteController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      appBar: CustomAppBar(
+      appBar: CommonAppBar(
         color: Theme.of(context).colorScheme.surface,
         centerTitle: true,
-        title: const CustomText(
-          text: AppConstants.favourite,
+        title: const CommonText(
+          text: AppStrings.favourite,
           fontFamily: poppinsSemiBold,
           fontWeight: FontWeight.bold,
         ),
@@ -48,7 +50,7 @@ class FavouriteView extends GetView<FavouriteController> {
                         return const Expanded(
                           child: Center(
                             child: CircularProgressIndicator(
-                              color: ColorCodes.teal,
+                              color: ColorCodes.purple,
                             ),
                           ),
                         );
@@ -126,7 +128,7 @@ class FavouriteView extends GetView<FavouriteController> {
                                         Row(
                                           children: [
                                             Expanded(
-                                              child: CustomText(
+                                              child: CommonText(
                                                 text: reversedData[index]
                                                         ["title"] ??
                                                     "",
@@ -153,7 +155,7 @@ class FavouriteView extends GetView<FavouriteController> {
                                                           reversedData[index]
                                                               ["favorite"]);
                                                     },
-                                                    icon: CustomIcon(
+                                                    icon: CommonmIcon(
                                                       icon: reversedData[index][
                                                                   "favorite"] ==
                                                               1
@@ -184,10 +186,10 @@ class FavouriteView extends GetView<FavouriteController> {
                                                                 ["id"]);
                                                         Get.back();
                                                       },
-                                                      titleText: AppConstants
+                                                      titleText: AppStrings
                                                           .deleteNote);
                                                 },
-                                                icon: const CustomIcon(
+                                                icon: const CommonmIcon(
                                                   icon: Icons.delete,
                                                   size: 18,
                                                   color: ColorCodes.grey,
@@ -212,7 +214,7 @@ class FavouriteView extends GetView<FavouriteController> {
                                         Padding(
                                           padding:
                                               const EdgeInsets.only(right: 6),
-                                          child: CustomText(
+                                          child: CommonText(
                                             text: reversedData[index]
                                                     ["description"] ??
                                                 "",
@@ -227,7 +229,7 @@ class FavouriteView extends GetView<FavouriteController> {
                                         const Spacer(),
                                         Row(
                                           children: [
-                                            CustomIcon(
+                                            CommonmIcon(
                                               icon: Icons
                                                   .access_time_filled_rounded,
                                               size: 12,
@@ -246,7 +248,7 @@ class FavouriteView extends GetView<FavouriteController> {
                                             // SizedBox(
                                             //   width: 3.w,
                                             // ),
-                                            CustomText(
+                                            CommonText(
                                               text: formattedDate.toString(),
                                               overflow: TextOverflow.ellipsis,
                                               fontFamily: poppins,

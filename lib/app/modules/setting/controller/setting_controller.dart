@@ -6,16 +6,18 @@ import 'package:ainotes/app/routes/app_pages.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class SettingController extends GetxController {
   bool isShare = false;
 
   List<String> settings = [
-    AppConstants.favourite,
-    AppConstants.kFAQ,
-    AppConstants.ratingUs,
-    AppConstants.shareApp,
-    AppConstants.privacyPolicy,
-    AppConstants.termsAndConditions,
+    AppStrings.favourite,
+    AppStrings.kFAQ,
+    AppStrings.ratingUs,
+    AppStrings.shareApp,
+    AppStrings.privacyPolicy,
+    AppStrings.termsAndConditions,
   ];
 
   void onShareAppLink() {

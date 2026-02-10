@@ -9,6 +9,8 @@ import 'package:ainotes/app/common/widgets/loding_utils.dart';
 import 'package:ainotes/app/modules/home/view/home_view.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class GeneratePostController extends GetxController {
   TextEditingController controller = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -16,8 +18,8 @@ class GeneratePostController extends GetxController {
   int selectedSocialMediaType = 0;
   int selectedVoiceTone = 0;
 
-  String selectedVoiceToneType = AppConstants.funny;
-  String selectedSocialMedia = AppConstants.instagram;
+  String selectedVoiceToneType = AppStrings.funny;
+  String selectedSocialMedia = AppStrings.instagram;
   String? fromSelectedLanguage = "English";
 
   String? generatedResponse;
@@ -36,19 +38,19 @@ class GeneratePostController extends GetxController {
     twitterIcon,
   ];
   List<String> socialMediaPlatFormType = [
-    AppConstants.instagram,
-    AppConstants.facebook,
-    AppConstants.x,
+    AppStrings.instagram,
+    AppStrings.facebook,
+    AppStrings.x,
   ];
 
   List<String> voiceToneType = [
-    AppConstants.funny,
-    AppConstants.serious,
-    AppConstants.friendly,
-    AppConstants.motivational,
-    AppConstants.professional,
-    AppConstants.objective,
-    AppConstants.humorous,
+    AppStrings.funny,
+    AppStrings.serious,
+    AppStrings.friendly,
+    AppStrings.motivational,
+    AppStrings.professional,
+    AppStrings.objective,
+    AppStrings.humorous,
   ];
 
   void sendMsg({required String text}) async {
@@ -67,7 +69,7 @@ class GeneratePostController extends GetxController {
 
         /// Check MessageLimit was not zero
         if (premiumController.isPremium) {
-          LoadingUtils().startLoadingGenerateAiResponse();
+          CommonLoderUtils().startLoadingGenerateAiResponse();
           update();
 
           final OpenAI openai = OpenAI.instance;
@@ -98,7 +100,7 @@ class GeneratePostController extends GetxController {
               ?.map((item) => item.text)
               .join();
 
-          LoadingUtils().stopLoading();
+          CommonLoderUtils().stopLoading();
           generatedResponse = aiResponseText;
           update();
 
@@ -113,7 +115,7 @@ class GeneratePostController extends GetxController {
             );
           }
         } else if (homeController.messageLimit > 0) {
-          LoadingUtils().startLoadingGenerateAiResponse();
+          CommonLoderUtils().startLoadingGenerateAiResponse();
           update();
 
           final OpenAI openai = OpenAI.instance;
@@ -145,7 +147,7 @@ class GeneratePostController extends GetxController {
               ?.map((item) => item.text)
               .join();
 
-          LoadingUtils().stopLoading();
+          CommonLoderUtils().stopLoading();
           generatedResponse = aiResponseText;
           update();
 
@@ -164,7 +166,7 @@ class GeneratePostController extends GetxController {
           homeController.decreaseMessageLimit();
         } else {
           Fluttertoast.showToast(
-              msg: AppConstants.limitOver,
+              msg: AppStrings.limitOver,
               toastLength: Toast.LENGTH_LONG,
               gravity: ToastGravity.BOTTOM,
               fontSize: 12.0);
@@ -183,7 +185,7 @@ class GeneratePostController extends GetxController {
         print("ERROR $err");
       }
 
-      LoadingUtils().stopLoading();
+      CommonLoderUtils().stopLoading();
       update();
     }
   }

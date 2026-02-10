@@ -11,6 +11,8 @@ import 'package:ainotes/app/common/widgets/container_widget.dart';
 import 'package:ainotes/app/common/widgets/icon_widget.dart';
 import 'package:ainotes/app/modules/Add_Note/controller/add_note_controller.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 void showScanToTextBottomSheet() {
   Get.bottomSheet(
     isScrollControlled: true,
@@ -45,7 +47,7 @@ Widget _buildCloseButton(AddNoteController controller) {
   return Row(
     children: [
       const Spacer(),
-      CustomContainer(
+      CommonContainer(
         height: 40,
         width: 40,
         backgroundColor: ColorCodes.surface.withOpacity(0.2),
@@ -78,12 +80,12 @@ Widget _buildImageSourceSelection(AddNoteController controller) {
     mainAxisAlignment: MainAxisAlignment.spaceAround,
     children: [
       _buildSourceButton(
-        label: AppConstants.gallery,
+        label: AppStrings.gallery,
         icon: Icons.image,
         onTap: controller.pickImageFromGallery,
       ),
       _buildSourceButton(
-        label: AppConstants.camera,
+        label: AppStrings.camera,
         icon: Icons.camera_alt,
         onTap: controller.pickImageFromCamera,
       ),
@@ -105,14 +107,14 @@ Widget _buildSourceButton({
         color: ColorCodes.grey.withOpacity(0.2),
         borderRadius: BorderRadius.circular(15),
         border: Border(
-          bottom: BorderSide(color: ColorCodes.teal.withOpacity(0.5), width: 3.0),
+          bottom: BorderSide(color: ColorCodes.purple.withOpacity(0.5), width: 3.0),
         ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
           children: [
-            CustomIcon(icon: icon, color: ColorCodes.primary, size: 25),
+            CommonmIcon(icon: icon, color: ColorCodes.primary, size: 25),
             SizedBox(width: 10.w),
             Flexible(
               child: Text(
@@ -135,11 +137,11 @@ Widget _buildSourceButton({
 Widget _buildImagePreview(AddNoteController controller) {
   return Column(
     children: [
-      CustomContainer(
+      CommonContainer(
         height: 400,
         width: 300,
-        borderColor: ColorCodes.teal,
-        backgroundColor: ColorCodes.teal.withOpacity(0.2),
+        borderColor: ColorCodes.purple,
+        backgroundColor: ColorCodes.purple.withOpacity(0.2),
         containerChild: controller.isLoadingImage
             ? const Center(child: CircularProgressIndicator())
             : Image.file(
@@ -149,14 +151,14 @@ Widget _buildImagePreview(AddNoteController controller) {
       ),
       SizedBox(height: 20.h),
       FloatingActionButton.extended(
-        backgroundColor: ColorCodes.teal,
+        backgroundColor: ColorCodes.purple,
         onPressed: () => controller.extractTextFromImage(controller.selectedImage),
         label: Row(
           children: [
-             CustomIcon(icon: Icons.document_scanner, color: ColorCodes.surface),
+             CommonmIcon(icon: Icons.document_scanner, color: ColorCodes.surface),
             const SizedBox(width: 10),
             Text(
-              AppConstants.scan,
+              AppStrings.scan,
               style:  TextStyle(
                 color: ColorCodes.surface,
                 fontFamily: montserratRegular,
@@ -174,10 +176,10 @@ Widget _buildImagePreview(AddNoteController controller) {
 Widget _buildScannedText(AddNoteController controller) {
   return Column(
     children: [
-      CustomContainer(
+      CommonContainer(
         height: 400,
         width: 300,
-        borderColor: ColorCodes.teal,
+        borderColor: ColorCodes.purple,
         containerChild: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -204,18 +206,18 @@ Widget _buildCopyButton(AddNoteController controller) {
       Clipboard.setData(ClipboardData(text: controller.scannedImageText))
           .then((_) => Fluttertoast.showToast(msg: 'Copied to clipboard!'));
     },
-    child: CustomContainer(
+    child: CommonContainer(
       width: 90,
       backgroundColor: ColorCodes.grey.withOpacity(0.2),
       containerChild: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
           children: [
-             CustomIcon(icon: Icons.copy, color: ColorCodes.primary, size: 14),
+             CommonmIcon(icon: Icons.copy, color: ColorCodes.primary, size: 14),
             SizedBox(width: 10.w),
              Flexible(
               child: Text(
-                AppConstants.copy,
+                AppStrings.copy,
                 style: TextStyle(color: ColorCodes.primary, fontSize: 12),
               ),
             ),
@@ -229,14 +231,14 @@ Widget _buildCopyButton(AddNoteController controller) {
 Widget _buildInsertButton(AddNoteController controller) {
   return GestureDetector(
     onTap: () => controller.insertTextIntoNote(controller.scannedImageText),
-    child: CustomContainer(
+    child: CommonContainer(
       width: 140,
       backgroundColor: ColorCodes.grey.withOpacity(0.2),
       containerChild: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
           children: [
-             CustomIcon(
+             CommonmIcon(
               icon: Icons.arrow_upward,
               color: ColorCodes.primary,
               size: 14,
@@ -244,7 +246,7 @@ Widget _buildInsertButton(AddNoteController controller) {
             SizedBox(width: 10.w),
              Flexible(
               child: Text(
-                AppConstants.insertBelow,
+                AppStrings.insertBelow,
                 style: TextStyle(color: ColorCodes.primary, fontSize: 12),
               ),
             ),

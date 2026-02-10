@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ainotes/app/common/constants/color_consrtant.dart';
 
-class CustomTextField extends StatelessWidget {
+class CommonTextField extends StatelessWidget {
   final TextEditingController? controller;
   final Color? fillColor;
   final double? minHeight;
@@ -22,7 +22,7 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final TextStyle? style;
 
-  const CustomTextField({
+  const CommonTextField({
     super.key,
     this.controller,
     this.fillColor,
@@ -50,7 +50,7 @@ class CustomTextField extends StatelessWidget {
     return TextField(
       controller: controller,
       readOnly: readOnly ?? false,
-      cursorColor: ColorCodes.teal,
+      cursorColor: ColorCodes.purple,
       focusNode: focusNode,
       maxLines: maxLines,
       minLines: minLines,

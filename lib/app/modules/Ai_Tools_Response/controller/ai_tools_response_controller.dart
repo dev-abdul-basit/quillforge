@@ -9,6 +9,8 @@ import 'package:ainotes/app/common/widgets/loding_utils.dart';
 import 'package:ainotes/app/modules/home/view/home_view.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class AiToolsResponseController extends GetxController {
   Map<String, dynamic>? arguments = Get.arguments;
   TextEditingController subheadingsController = TextEditingController();
@@ -27,7 +29,7 @@ class AiToolsResponseController extends GetxController {
   int selectedSocialMediaType = 0;
   int selectedVoiceTone = 0;
 
-  String selectedVoiceToneType = AppConstants.funny;
+  String selectedVoiceToneType = AppStrings.funny;
   String? fromSelectedLanguage = "English";
   String dropdownValue = 'Small';
   String? selectedLength;
@@ -92,13 +94,13 @@ class AiToolsResponseController extends GetxController {
   };
 
   List<String> voiceToneType = [
-    AppConstants.funny,
-    AppConstants.serious,
-    AppConstants.friendly,
-    AppConstants.motivational,
-    AppConstants.professional,
-    AppConstants.objective,
-    AppConstants.humorous,
+    AppStrings.funny,
+    AppStrings.serious,
+    AppStrings.friendly,
+    AppStrings.motivational,
+    AppStrings.professional,
+    AppStrings.objective,
+    AppStrings.humorous,
   ];
 
   String generatePrompt({
@@ -172,7 +174,7 @@ class AiToolsResponseController extends GetxController {
 
         /// Check MessageLimit was not zero
         if (premiumController.isPremium) {
-          LoadingUtils().startLoadingGenerateAiResponse();
+          CommonLoderUtils().startLoadingGenerateAiResponse();
           update();
 
           final OpenAI openai = OpenAI.instance;
@@ -203,7 +205,7 @@ class AiToolsResponseController extends GetxController {
               ?.map((item) => item.text)
               .join();
 
-          LoadingUtils().stopLoading();
+          CommonLoderUtils().stopLoading();
           generatedResponse = aiResponseText;
 
           update();
@@ -219,7 +221,7 @@ class AiToolsResponseController extends GetxController {
             );
           }
         } else if (homeController.messageLimit > 0) {
-          LoadingUtils().startLoadingGenerateAiResponse();
+          CommonLoderUtils().startLoadingGenerateAiResponse();
           update();
 
           final OpenAI openai = OpenAI.instance;
@@ -250,7 +252,7 @@ class AiToolsResponseController extends GetxController {
               ?.map((item) => item.text)
               .join();
 
-          LoadingUtils().stopLoading();
+          CommonLoderUtils().stopLoading();
           generatedResponse = aiResponseText;
           update();
 
@@ -269,7 +271,7 @@ class AiToolsResponseController extends GetxController {
           homeController.decreaseMessageLimit();
         } else {
           Fluttertoast.showToast(
-              msg: AppConstants.limitOver,
+              msg: AppStrings.limitOver,
               toastLength: Toast.LENGTH_LONG,
               gravity: ToastGravity.BOTTOM,
               fontSize: 12.0);
@@ -288,7 +290,7 @@ class AiToolsResponseController extends GetxController {
         print("ERROR $err");
       }
 
-      LoadingUtils().stopLoading();
+      CommonLoderUtils().stopLoading();
       update();
     }
   }

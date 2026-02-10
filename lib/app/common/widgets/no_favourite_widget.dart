@@ -4,6 +4,8 @@ import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/common/constants/font_family_constants.dart';
 import 'package:ainotes/app/common/constants/image_constants.dart';
 
+import '../constants/app_strings.dart';
+
 class NoFavouriteWidget extends StatelessWidget {
   const NoFavouriteWidget({super.key});
 
@@ -26,7 +28,7 @@ class NoFavouriteWidget extends StatelessWidget {
         ),
         const Center(
           child: Text(
-            AppConstants.kNoFavourite,
+            AppStrings.kNoFavourite,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 14,

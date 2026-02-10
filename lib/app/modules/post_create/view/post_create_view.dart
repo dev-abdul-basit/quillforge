@@ -11,6 +11,8 @@ import 'package:ainotes/app/common/widgets/container_widget.dart';
 import 'package:ainotes/app/common/widgets/text_widget.dart';
 import 'package:ainotes/app/modules/post_create/controller/post_create_controller.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class PostCreateView extends GetView<PostCreateController> {
   const PostCreateView({super.key});
 
@@ -19,10 +21,10 @@ class PostCreateView extends GetView<PostCreateController> {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      appBar: CustomAppBar(
+      appBar: CommonAppBar(
         color: Theme.of(context).colorScheme.secondaryContainer,
         centerTitle: true,
-        title: CustomText(
+        title: CommonText(
           text: controller.postType!,
           fontFamily: poppinsSemiBold,
           fontWeight: FontWeight.bold,
@@ -35,7 +37,7 @@ class PostCreateView extends GetView<PostCreateController> {
             SizedBox(
               height: 10.h,
             ),
-            CustomContainer(
+            CommonContainer(
               height: height * 0.50,
               width: double.infinity,
               containerChild: SingleChildScrollView(
@@ -50,7 +52,7 @@ class PostCreateView extends GetView<PostCreateController> {
             ),
             Spacer(),
             FloatingActionButton.extended(
-              backgroundColor: ColorCodes.teal,
+              backgroundColor: ColorCodes.purple,
               onPressed: () {
                 /// copy to clip board message
                 Clipboard.setData(
@@ -65,8 +67,8 @@ class PostCreateView extends GetView<PostCreateController> {
               },
               label: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 50.w),
-                child: CustomText(
-                  text: AppConstants.copy,
+                child: CommonText(
+                  text: AppStrings.copy,
                   fontColor: ColorCodes.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,

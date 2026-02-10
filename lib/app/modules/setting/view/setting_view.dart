@@ -16,6 +16,8 @@ import 'package:ainotes/app/modules/setting/controller/setting_controller.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 import 'package:ainotes/app/theme/theme_controller/theme_controller.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class SettingView extends GetView<SettingController> {
   const SettingView({super.key});
 
@@ -25,11 +27,11 @@ class SettingView extends GetView<SettingController> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      appBar: CustomAppBar(
+      appBar: CommonAppBar(
         color: Theme.of(context).colorScheme.secondaryContainer,
         centerTitle: true,
-        title: const CustomText(
-          text: AppConstants.settings,
+        title: const CommonText(
+          text: AppStrings.settings,
           fontFamily: poppinsSemiBold,
           fontWeight: FontWeight.bold,
         ),
@@ -47,13 +49,13 @@ class SettingView extends GetView<SettingController> {
                 ? SizedBox()
                 : Stack(
                     children: [
-                      CustomContainer(
+                      CommonContainer(
                         height: 150,
                         width: double.infinity,
                         image: const DecorationImage(
                             image: AssetImage(vipBG), fit: BoxFit.cover),
                       ),
-                      CustomContainer(
+                      CommonContainer(
                         height: 150,
                         width: double.infinity,
                         backgroundColor: ColorCodes.black.withOpacity(0.7),
@@ -64,7 +66,7 @@ class SettingView extends GetView<SettingController> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const CustomText(
+                                const CommonText(
                                   text: "Today's Free Premium Access:",
                                   fontColor: ColorCodes.white,
                                   fontFamily: montserratRegular,
@@ -75,7 +77,7 @@ class SettingView extends GetView<SettingController> {
                                   overflow: TextOverflow.ellipsis,
                                   //fontWeight: FontWeight.bold,
                                 ),
-                                CustomText(
+                                CommonText(
                                   text:
                                       " ${homeController.messageLimit.toString()}",
                                   fontColor: ColorCodes.orange,
@@ -92,8 +94,8 @@ class SettingView extends GetView<SettingController> {
                             SizedBox(
                               height: 8.h,
                             ),
-                            const CustomText(
-                              text: AppConstants.unlockVip,
+                            const CommonText(
+                              text: AppStrings.unlockVip,
                               fontColor: ColorCodes.white,
                               fontFamily: montserratRegular,
                               maxLines: 1,
@@ -121,8 +123,8 @@ class SettingView extends GetView<SettingController> {
                                   ),
                                 ),
                                 child: const Center(
-                                  child: CustomText(
-                                    text: AppConstants.upgrade,
+                                  child: CommonText(
+                                    text: AppStrings.upgrade,
                                     fontSize: 14,
                                     fontFamily: poppins,
                                     fontColor: ColorCodes.white,
@@ -142,7 +144,7 @@ class SettingView extends GetView<SettingController> {
             const SizedBox(
               height: 15,
             ),
-            CustomContainer(
+            CommonContainer(
               containerChild: Column(
                 children: [
                   ListTile(
@@ -167,7 +169,7 @@ class SettingView extends GetView<SettingController> {
                           useMaterial3: true,
                         ).copyWith(
                           colorScheme: Theme.of(context).colorScheme.copyWith(
-                                outline: ColorCodes.teal,
+                                outline: ColorCodes.purple,
                               ),
                         ),
                         child: Switch(
@@ -185,7 +187,7 @@ class SettingView extends GetView<SettingController> {
                                     0.1); // Thumb color when the switch is on
                               }
                               return ColorCodes
-                                  .teal; // Thumb color when the switch is off
+                                  .purple; // Thumb color when the switch is off
                             },
                           ),
                           thumbIcon: WidgetStateProperty.resolveWith<Icon?>(
@@ -213,7 +215,7 @@ class SettingView extends GetView<SettingController> {
             const SizedBox(
               height: 15,
             ),
-            CustomContainer(
+            CommonContainer(
               containerChild: Column(
                   children: List.generate(
                 controller.settings.length,
@@ -231,7 +233,7 @@ class SettingView extends GetView<SettingController> {
                           fontFamily: poppinsSemiBold,
                         ),
                       ),
-                      trailing: const CustomIcon(
+                      trailing: const CommonmIcon(
                         icon: Icons.arrow_forward_ios_sharp,
                         size: 16,
                       ),

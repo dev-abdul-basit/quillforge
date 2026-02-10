@@ -1,20 +1,24 @@
 import 'package:get/get.dart';
 
 class AiToolCreateController extends GetxController {
-  Map<String, dynamic>? arguments = Get.arguments;
+  final Map<String, dynamic>? _routeArguments = Get.arguments;
 
-  /// Arguments variables
-  String? title;
-  String? aiToolsResponse;
+  /// Screen title passed via navigation
+  String? screenTitle;
+
+  /// Generated AI content to display
+  String? generatedContent;
 
   @override
   void onInit() {
-    if (arguments != null) {
-      title = arguments!["title"];
-      aiToolsResponse = arguments!["AiToolsResponse"];
-    }
-
-    // TODO: implement onInit
     super.onInit();
+    _extractRouteArguments();
+  }
+
+  void _extractRouteArguments() {
+    if (_routeArguments == null) return;
+
+    screenTitle = _routeArguments!['title'];
+    generatedContent = _routeArguments!['AiToolsResponse'];
   }
 }

@@ -28,7 +28,7 @@ class TextFieldWidget extends StatelessWidget {
         SizedBox(
           height: 20.h,
         ),
-        CustomText(
+        CommonText(
           text: title!,
           fontFamily: poppinsSemiBold,
           fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class TextFieldWidget extends StatelessWidget {
                 return null;
               },
               controller: controller,
-              cursorColor: ColorCodes.teal,
+              cursorColor: ColorCodes.purple,
               maxLines: maxLines,
               decoration: InputDecoration(
                 fillColor: ColorCodes.background,
@@ -82,7 +82,7 @@ class TextFieldWidget extends StatelessWidget {
               right: 10,
               child: GestureDetector(
                 onTap: () => controller!.clear(),
-                child: CustomIcon(
+                child: CommonmIcon(
                   icon: Icons.clear,
                   size: 19,
                   color: ColorCodes.grey,

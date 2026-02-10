@@ -35,7 +35,7 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:record/record.dart';
-
+import 'package:ainotes/app/common/constants/app_strings.dart';
 import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/common/constants/color_consrtant.dart';
 import 'package:ainotes/app/modules/favourite/controller/favourite_controller.dart';
@@ -216,7 +216,7 @@ class AddNoteController extends GetxController {
         await _generateWithFreeModel(trimmedPrompt);
         homeController.decreaseMessageLimit();
       } else {
-        aiGeneratedText = AppConstants.limitOver;
+        aiGeneratedText = AppStrings.limitOver;
       }
     } catch (error) {
       _showErrorToast();
@@ -319,7 +319,7 @@ class AddNoteController extends GetxController {
         await _transcribeWithFreeLimit(audioPath);
         homeController.decreaseMessageLimit();
       } else {
-        transcribedText = AppConstants.limitOver;
+        transcribedText = AppStrings.limitOver;
       }
     } catch (error) {
       _showErrorToast();

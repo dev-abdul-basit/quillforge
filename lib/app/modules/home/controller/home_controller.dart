@@ -11,6 +11,8 @@ import 'package:ainotes/app/modules/home/widget/earn_reward_dialog_box.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 import 'package:ainotes/app/sql/sql_helper.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class HomeController extends GetxController {
   SharePrefService sharePrefService = SharePrefService();
 
@@ -35,8 +37,8 @@ class HomeController extends GetxController {
   bool isAdLoadedRewarded = false;
 
   List aiTools = [
-    AppConstants.generatePost,
-    AppConstants.more,
+    AppStrings.generatePost,
+    AppStrings.more,
   ];
   List aiToolsScreens = [
     Routes.generatePostView,
@@ -177,7 +179,7 @@ class HomeController extends GetxController {
       print("....START....");
     }
 
-    LoadingUtils().startLoading();
+    CommonLoderUtils().startLoading();
 
     try {
       InterstitialAd.load(
@@ -242,7 +244,7 @@ class HomeController extends GetxController {
       print("....START....");
     }
 
-    LoadingUtils().startLoading();
+    CommonLoderUtils().startLoading();
 
     RewardedAd.load(
       adUnitId: AdsUnitIdHelper.rewardedUnitId,
@@ -255,7 +257,7 @@ class HomeController extends GetxController {
 
           ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
             /// Loader Stop
-            LoadingUtils().stopLoading();
+            CommonLoderUtils().stopLoading();
 
             /// dialog Box off
             Get.back();
@@ -304,7 +306,7 @@ class HomeController extends GetxController {
             const Duration(seconds: 5),
             () {
               /// Loader Stop
-              LoadingUtils().stopLoading();
+              CommonLoderUtils().stopLoading();
 
               Fluttertoast.showToast(
                 msg: "Failed to load a ads..",
@@ -327,13 +329,13 @@ class HomeController extends GetxController {
     if (favorite == 1) {
       await SqlHelper.unmarkAsFavorite(noteId);
       favorite = 0;
-      Fluttertoast.showToast(msg: AppConstants.favouriteRemove);
+      Fluttertoast.showToast(msg: AppStrings.favouriteRemove);
       update();
     } else {
       await SqlHelper.markAsFavorite(noteId);
 
       favorite = 1;
-      Fluttertoast.showToast(msg: AppConstants.favouriteAdd);
+      Fluttertoast.showToast(msg: AppStrings.favouriteAdd);
       update();
     }
     fetchNotes();

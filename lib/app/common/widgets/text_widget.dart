@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class CustomText extends StatelessWidget {
-  const CustomText({
+class CommonText extends StatelessWidget {
+  const CommonText({
     @override super.key,
     required this.text,
     this.fontSize,

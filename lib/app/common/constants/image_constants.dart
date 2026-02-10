@@ -1,21 +1,23 @@
-const openAiLogo = "assets/images/icons/OpenAiLogo.png";
-const addIcon = "assets/images/icons/AddIcon.png";
-const messageSendIcon = "assets/images/icons/MessageSendIcon.png";
-const shinesIcon = "assets/images/icons/ShinesIcon.png";
-const vipBG = "assets/images/icons/VipBG.jpg";
-const premiumIcon = "assets/images/icons/PremiumIcon.png";
-const giftIcon = "assets/images/icons/GiftIcon.png";
-const noDataFoundImage = "assets/images/icons/NoDataFound.png";
-const noResultsImage = "assets/images/icons/NoResults.png";
-const favouriteIcon = "assets/images/icons/FavouriteIcon.png";
-const saveIcon = "assets/images/icons/SaveIcon.png";
-const instagramIcon = "assets/images/icons/InstagramIcon.png";
-const facebookIcon = "assets/images/icons/FacebookIcon.png";
-const twitterIcon = "assets/images/icons/TwitterIcon.png";
-const moreIcon = "assets/images/icons/MoreIcon.png";
 
-/// App ICOn
-const appIcon = "assets/images/icons/AiNotesAppIcon.png";
+
+const addIcon = "assets/images/icons/icAddIcon.png";
+const appIcon = "assets/img_icon.png";
+const deleteIcon = "assets/images/icons/icDeleteIcon.png";
+const facebookIcon = "assets/images/icons/icFacebookIcon.png";
+const favouriteIcon = "assets/images/icons/icFavouriteIcon.png";
+const giftIcon = "assets/images/icons/icGiftIcon.png";
+const instagramIcon = "assets/images/icons/icInstagramIcon.png";
+const messageSendIcon = "assets/images/icons/icMessageSendIcon.png";
+const moreIcon = "assets/images/icons/icMoreIcon.png";
+const noDataFoundImage = "assets/images/icons/icNoDataFound.png";
+const noResultsImage = "assets/images/icons/icNoResults.png";
+const openAiLogo = "assets/images/icons/icOpenAiLogo.png";
+const premiumIcon = "assets/images/icons/icPremiumIcon.png";
+const shinesIcon = "assets/images/icons/icShinesIcon.png";
+const vipBG = "assets/images/icons/icVipBG.jpg";
+const saveIcon = "assets/images/icons/icSaveIcon.png";
+const twitterIcon = "assets/images/icons/icTwitterIcon.png";
+
 
 ///   AiTools Icons
 class AiToolsIcons {

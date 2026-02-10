@@ -10,6 +10,8 @@ import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class PremiumController extends GetxController
     with GetSingleTickerProviderStateMixin {
   SharePrefService sharePrefService = SharePrefService();
@@ -63,10 +65,10 @@ class PremiumController extends GetxController
   }
 
   List type = [
-    AppConstants.Gpt4,
-    AppConstants.socialAssistant,
-    AppConstants.unlimited,
-    AppConstants.adsFree,
+    AppStrings.Gpt4,
+    AppStrings.socialAssistant,
+    AppStrings.unlimited,
+    AppStrings.adsFree,
   ];
 
   listenToPurchase(List<ProductDetails> purchaseDetailsList) {

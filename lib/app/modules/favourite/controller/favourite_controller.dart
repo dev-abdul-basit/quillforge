@@ -4,6 +4,8 @@ import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/modules/home/view/home_view.dart';
 import 'package:ainotes/app/sql/sql_helper.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class FavouriteController extends GetxController {
   @override
   void onInit() {
@@ -36,13 +38,13 @@ class FavouriteController extends GetxController {
     if (favorite == 1) {
       await SqlHelper.unmarkAsFavorite(noteId);
       favorite = 0;
-      Fluttertoast.showToast(msg: AppConstants.favouriteRemove);
+      Fluttertoast.showToast(msg: AppStrings.favouriteRemove);
       update();
     } else {
       await SqlHelper.markAsFavorite(noteId);
 
       favorite = 1;
-      Fluttertoast.showToast(msg: AppConstants.favouriteAdd);
+      Fluttertoast.showToast(msg: AppStrings.favouriteAdd);
       update();
     }
     refreshFavoriteNote();

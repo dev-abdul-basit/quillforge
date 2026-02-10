@@ -1,8 +1,12 @@
-# QuillForge
+# QuillForge: AI Notes & Content
 
-QuillForge is a cross-platform AI-powered productivity application built with Flutter for Android and iOS. It combines intelligent note-taking with a rich library of AI tools for writing, content creation, marketing, and daily productivity. The project is designed for production use with clear monetization boundaries, optimized AI usage, and a scalable modular architecture.
+QuillForge is a cross-platform AI-powered productivity application built with Flutter for Android
+and iOS. It combines intelligent note-taking with a rich library of AI tools for writing, content
+creation, marketing, and daily productivity. The project is designed for production use with clear
+monetization boundaries, optimized AI usage, and a scalable modular architecture.
 
 ---
+![img.png](img.png)
 
 ## Overview
 
@@ -15,7 +19,8 @@ QuillForge enables users to:
 - Access free and premium tiers with clear feature separation
 - Experience a performant, offline-first mobile app with cloud sync
 
-The app follows a strict free vs premium model, where advanced AI models, higher limits, and ad-free usage are reserved for subscribers.
+The app follows a strict free vs premium model, where advanced AI models, higher limits, and ad-free
+usage are reserved for subscribers.
 
 ---
 
@@ -37,22 +42,26 @@ The app follows a strict free vs premium model, where advanced AI models, higher
 ## Core Features
 
 ### AI Notes
+
 - Quick Notes using lightweight models for fast generation
 - Advanced Notes using higher-quality models (premium only)
 - AI-assisted editing (rewrite, expand, summarize)
 - Folder organization, search, favorites, and export
 
 ### Voice & Image to Text
+
 - Audio-to-text transcription
 - Image OCR and understanding
 - Outputs saved as fully editable notes
 
 ### Social Media Generation
+
 - Instagram, Facebook, X, LinkedIn, TikTok
 - Configurable tone, length, hashtags, and emojis
 - Save to notes or copy/share instantly
 
 ### AI Tools Library
+
 - 50+ deterministic AI tools
 - Categorized by writing, marketing, business, creative, and productivity
 - One-shot generation with reusable outputs
@@ -62,11 +71,13 @@ The app follows a strict free vs premium model, where advanced AI models, higher
 ## Monetization Model
 
 **Free Tier**
+
 - Limited daily AI requests
 - Ads enabled (AdMob)
 - Restricted access to advanced models
 
 **Premium Subscription**
+
 - Higher or unlimited AI usage
 - Access to advanced AI models
 - Fully ad-free experience
@@ -89,7 +100,6 @@ lib/
 │ ├── theme/ # theme management
 │ └── Pref/ # shared preferences
 └── main.dart
-
 
 - **Controllers**: business logic, API calls, state
 - **Views**: UI only
@@ -119,6 +129,7 @@ Firebase Functions are intentionally not used.
 - Feature work should be done on `development` and merged after validation
 
 Before committing:
+
 - Ensure no secrets are committed
 - Verify free vs premium boundaries
 - Test loading, error, and offline states
@@ -136,7 +147,8 @@ Before committing:
 
 ## Status
 
-This repository contains the active development codebase for QuillForge. Features are implemented incrementally with a focus on performance, cost control, and production stability.
+This repository contains the active development codebase for QuillForge. Features are implemented
+incrementally with a focus on performance, cost control, and production stability.
 
 ---
 

@@ -23,6 +23,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 final HomeController homeController = Get.put(HomeController());
 final PremiumController premiumController = Get.put(PremiumController());
 
@@ -31,96 +33,90 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
       appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(kToolbarHeight),
-          child: GetBuilder<HomeController>(
-            builder: (controller) {
-              return CustomAppBar(
-                color: Theme.of(context).colorScheme.secondaryContainer,
-                titleSpacing: 0.0,
-                title: controller.isSearch == false
-                    ? Padding(
-                        padding: const EdgeInsets.only(
-                          left: 15,
-                          right: 10,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          child: CustomTextField(
-                            onTap: () => controller.onTapToSearch(),
-                            fillColor: Theme.of(context).colorScheme.background,
-                            maxWidth: double.infinity,
-                            hintText: AppConstants.searched,
-                            hintStyle: const TextStyle(
-                              fontFamily: roboto,
-                              color: ColorCodes.grey,
-                              fontSize: 15,
-                            ),
-                            minHeight: 30,
-                            borderRadius: 12,
-                            enabledBorderRadius: 15,
-                            focusedBorderRadius: 15,
-                            readOnly: true,
-                            prefixIcon: const CustomIcon(
-                              icon: Icons.search,
-                              size: 20,
-                              color: ColorCodes.grey,
-                            ),
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: GetBuilder<HomeController>(
+          builder: (controller) {
+            return CommonAppBar(
+              color: Theme.of(context).colorScheme.secondaryContainer,
+              titleSpacing: 0.0,
+              title: controller.isSearch == false
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 10),
+                      child: SizedBox(
+                        height: 45,
+                        child: CommonTextField(
+                          onTap: () => controller.onTapToSearch(),
+                          fillColor: Theme.of(context).colorScheme.background,
+                          maxWidth: double.infinity,
+                          hintText: AppStrings.searched,
+                          hintStyle: const TextStyle(
+                            fontFamily: roboto,
+                            color: ColorCodes.grey,
+                            fontSize: 15,
+                          ),
+                          minHeight: 30,
+                          borderRadius: 12,
+                          enabledBorderRadius: 15,
+                          focusedBorderRadius: 15,
+                          readOnly: true,
+                          prefixIcon: const CommonmIcon(
+                            icon: Icons.search,
+                            size: 20,
+                            color: ColorCodes.grey,
                           ),
                         ),
-                      )
-                    : Padding(
-                        padding: const EdgeInsets.only(
-                          left: 15,
-                          right: 5,
-                        ),
-                        child: SizedBox(
-                          height: 45,
-                          child: CustomTextField(
-                            controller: controller.searchController,
-                            fillColor: Theme.of(context).colorScheme.background,
-                            maxWidth: double.infinity,
-                            hintText: AppConstants.searched,
-                            maxLines: 1,
-                            hintStyle: const TextStyle(
-                              fontFamily: roboto,
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 5),
+                      child: SizedBox(
+                        height: 45,
+                        child: CommonTextField(
+                          controller: controller.searchController,
+                          fillColor: Theme.of(context).colorScheme.background,
+                          maxWidth: double.infinity,
+                          hintText: AppStrings.searched,
+                          maxLines: 1,
+                          hintStyle: const TextStyle(
+                            fontFamily: roboto,
+                            color: ColorCodes.grey,
+                            fontSize: 15,
+                          ),
+                          minHeight: 30,
+                          borderRadius: 14,
+                          enabledBorderRadius: 10,
+                          focusedBorderRadius: 10,
+                          prefixIcon: const CommonmIcon(
+                            icon: Icons.search,
+                            size: 20,
+                            color: ColorCodes.grey,
+                          ),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              controller.searchController.clear();
+                            },
+                            child: const CommonmIcon(
+                              icon: Icons.clear,
                               color: ColorCodes.grey,
-                              fontSize: 15,
-                            ),
-                            minHeight: 30,
-                            borderRadius: 14,
-                            enabledBorderRadius: 10,
-                            focusedBorderRadius: 10,
-                            prefixIcon: const CustomIcon(
-                              icon: Icons.search,
                               size: 20,
-                              color: ColorCodes.grey,
-                            ),
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                controller.searchController.clear();
-                              },
-                              child: const CustomIcon(
-                                icon: Icons.clear,
-                                color: ColorCodes.grey,
-                                size: 20,
-                              ),
                             ),
                           ),
                         ),
                       ),
-                actions: [
-                  controller.isSearch == false
-                      ? Row(
-                          children: [
-                            premiumController.isPremium == true
-                                ? SizedBox()
-                                : GestureDetector(onTap: () {
+                    ),
+              actions: [
+                controller.isSearch == false
+                    ? Row(
+                        children: [
+                          premiumController.isPremium == true
+                              ? SizedBox()
+                              : GestureDetector(
+                                  onTap: () {
                                     if (controller.messageLimit == 0) {
                                       watchAdsEarnRewardDialogBox(
                                         context: context,
@@ -135,27 +131,30 @@ class HomeView extends GetView<HomeController> {
                                             controller.update();
                                           } else {
                                             Fluttertoast.showToast(
-                                                msg: "ads is not loaded");
+                                              msg: "ads is not loaded",
+                                            );
                                             print(
-                                                "Interstitial ad is not loaded yet.");
+                                              "Interstitial ad is not loaded yet.",
+                                            );
                                           }
                                         },
                                       );
                                     }
-                                  }, child: GetBuilder<HomeController>(
+                                  },
+                                  child: GetBuilder<HomeController>(
                                     builder: (controller) {
                                       return ClipRRect(
                                         borderRadius: BorderRadius.circular(12),
                                         child: Stack(
                                           children: [
-                                            CustomContainer(
+                                            CommonContainer(
                                               width: 40,
                                               height: 45,
                                               backgroundColor:
                                                   ColorCodes.orange,
                                               radius: 12,
                                               containerChild: Center(
-                                                child: CustomText(
+                                                child: CommonText(
                                                   text: controller.messageLimit
                                                       .toString(),
                                                   fontSize: 15,
@@ -169,75 +168,76 @@ class HomeView extends GetView<HomeController> {
                                               color: ColorCodes.white,
                                               height: 18,
                                               width: 18,
-                                            )
+                                            ),
                                           ],
                                         ),
                                       );
                                     },
-                                  )),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Get.toNamed(Routes.settingView);
-                              },
-                              child: CustomContainer(
-                                width: 40,
-                                height: 45,
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.background,
-                                radius: 12,
-                                containerChild: Center(
-                                  child: CustomIcon(
-                                    icon: Icons.settings,
-                                    color: ColorCodes.primary.withOpacity(0.8),
                                   ),
                                 ),
+                          SizedBox(width: 10.w),
+                          GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.settingView);
+                            },
+                            child: CommonContainer(
+                              width: 40,
+                              height: 45,
+                              backgroundColor: Theme.of(
+                                context,
+                              ).colorScheme.background,
+                              radius: 12,
+                              containerChild: Center(
+                                child: CommonmIcon(
+                                  icon: Icons.settings,
+                                  color: Theme.of(context).colorScheme.onSurface.withOpacity(0.8),
+                                ),
                               ),
-                            )
-                          ],
-                        )
-                      : GestureDetector(
-                          onTap: () => controller.onTapToSearchBack(),
-                          child: CustomContainer(
-                            radius: 12,
-                            containerChild: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 12.5, horizontal: 15),
-                              child: Text(
-                                AppConstants.cancel,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: ColorCodes.teal),
+                            ),
+                          ),
+                        ],
+                      )
+                    : GestureDetector(
+                        onTap: () => controller.onTapToSearchBack(),
+                        child: CommonContainer(
+                          radius: 12,
+                          containerChild:  Padding(
+                            padding: EdgeInsets.symmetric(
+                              vertical: 12.5,
+                              horizontal: 15,
+                            ),
+                            child: Text(
+                              AppStrings.cancel,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.onSurface,
                               ),
                             ),
                           ),
                         ),
-                  SizedBox(
-                    width: 10.w,
-                  ),
-                ],
-              );
-            },
-          )),
+                      ),
+                SizedBox(width: 10.w),
+              ],
+            );
+          },
+        ),
+      ),
       bottomNavigationBar: GetBuilder<HomeController>(
         builder: (controller) {
           return premiumController.isPremium == true
               ? SizedBox()
               : controller.isSearch == false
-                  ? Container(
-                      padding: const EdgeInsets.only(bottom: 20),
-                      child: controller.isAdLoadedBanner
-                          ? SizedBox(
-                              height:
-                                  controller.bannerAd.size.height.toDouble(),
-                              width: controller.bannerAd.size.width.toDouble(),
-                              child: AdWidget(ad: controller.bannerAd),
-                            )
-                          : const SizedBox(),
-                    )
-                  : const SizedBox();
+              ? Container(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: controller.isAdLoadedBanner
+                      ? SizedBox(
+                          height: controller.bannerAd.size.height.toDouble(),
+                          width: controller.bannerAd.size.width.toDouble(),
+                          child: AdWidget(ad: controller.bannerAd),
+                        )
+                      : const SizedBox(),
+                )
+              : const SizedBox();
         },
       ),
       floatingActionButton: GetBuilder<HomeController>(
@@ -270,7 +270,7 @@ class HomeView extends GetView<HomeController> {
                             await Future.delayed(
                               const Duration(seconds: 2),
                               () {
-                                LoadingUtils().stopLoading();
+                                CommonLoderUtils().stopLoading();
 
                                 /// Navigate Screen
                                 Get.toNamed(Routes.addNoteView);
@@ -284,9 +284,9 @@ class HomeView extends GetView<HomeController> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        backgroundColor: ColorCodes.teal,
-                        foregroundColor: ColorCodes.teal,
-                        child: const CustomIcon(
+                        backgroundColor: ColorCodes.purple,
+                        foregroundColor: ColorCodes.purple,
+                        child: const CommonmIcon(
                           icon: Icons.add,
                           size: 30,
                           color: ColorCodes.white,
@@ -299,15 +299,12 @@ class HomeView extends GetView<HomeController> {
         },
       ),
       body: RefreshIndicator(
-        color: ColorCodes.teal,
+        color: ColorCodes.purple,
         onRefresh: () {
-          return Future.delayed(
-            const Duration(seconds: 1),
-            () {
-              controller.refreshData();
-              controller.getNotes();
-            },
-          );
+          return Future.delayed(const Duration(seconds: 1), () {
+            controller.refreshData();
+            controller.getNotes();
+          });
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -322,19 +319,15 @@ class HomeView extends GetView<HomeController> {
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              CustomText(
-                                text: AppConstants.aiTools,
+                              SizedBox(height: 20.h),
+                              CommonText(
+                                text: AppStrings.aiTools,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: poppins,
-                                fontColor: ColorCodes.primary,
+                                fontColor: Theme.of(context).colorScheme.onSurface,
                                 fontSize: 17,
                               ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
+                              SizedBox(height: 10.h),
                               Container(
                                 height: 85,
                                 child: ListView.builder(
@@ -345,7 +338,8 @@ class HomeView extends GetView<HomeController> {
                                     return GestureDetector(
                                       onTap: () {
                                         Get.toNamed(
-                                            controller.aiToolsScreens[index]);
+                                          controller.aiToolsScreens[index],
+                                        );
                                       },
                                       child: Card(
                                         elevation: 0.5,
@@ -356,8 +350,9 @@ class HomeView extends GetView<HomeController> {
                                               : width * 0.168,
                                           decoration: BoxDecoration(
                                             color: ColorCodes.background,
-                                            borderRadius:
-                                                BorderRadius.circular(radius),
+                                            borderRadius: BorderRadius.circular(
+                                              radius,
+                                            ),
                                           ),
                                           child: Padding(
                                             padding: const EdgeInsets.symmetric(
@@ -380,7 +375,8 @@ class HomeView extends GetView<HomeController> {
                                                                     .background,
                                                             backgroundImage:
                                                                 const AssetImage(
-                                                                    instagramIcon),
+                                                                  instagramIcon,
+                                                                ),
                                                           ),
                                                           Positioned(
                                                             right: -23,
@@ -389,12 +385,12 @@ class HomeView extends GetView<HomeController> {
                                                               backgroundColor:
                                                                   ColorCodes
                                                                       .background,
-                                                              child:
-                                                                  const CircleAvatar(
+                                                              child: const CircleAvatar(
                                                                 radius: 14,
                                                                 backgroundImage:
                                                                     AssetImage(
-                                                                        facebookIcon),
+                                                                      facebookIcon,
+                                                                    ),
                                                               ),
                                                             ),
                                                           ),
@@ -405,12 +401,12 @@ class HomeView extends GetView<HomeController> {
                                                               backgroundColor:
                                                                   ColorCodes
                                                                       .background,
-                                                              child:
-                                                                  const CircleAvatar(
+                                                              child: const CircleAvatar(
                                                                 radius: 14,
                                                                 backgroundImage:
                                                                     AssetImage(
-                                                                        twitterIcon),
+                                                                      twitterIcon,
+                                                                    ),
                                                               ),
                                                             ),
                                                           ),
@@ -419,13 +415,14 @@ class HomeView extends GetView<HomeController> {
                                                     : Image.asset(
                                                         moreIcon,
                                                         height: 22,
-                                                        color: ColorCodes.teal,
+                                                        color:
+                                                        Theme.of(context).colorScheme.onSurface,
                                                       ),
                                                 const Spacer(),
-                                                CustomText(
+                                                CommonText(
                                                   text:
                                                       controller.aiTools[index],
-                                                  fontColor: ColorCodes.primary
+                                                  fontColor: Theme.of(context).colorScheme.onSurface
                                                       .withOpacity(0.7),
                                                   fontSize: 11,
                                                 ),
@@ -442,17 +439,15 @@ class HomeView extends GetView<HomeController> {
                           );
                   },
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
+                SizedBox(height: 10.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    CustomText(
-                      text: AppConstants.quickNote,
+                    CommonText(
+                      text: AppStrings.quickNote,
                       fontWeight: FontWeight.bold,
                       fontFamily: poppins,
-                      fontColor: ColorCodes.primary,
+                      fontColor: Theme.of(context).colorScheme.onSurface,
                       fontSize: 17,
                     ),
                     const Spacer(),
@@ -468,13 +463,13 @@ class HomeView extends GetView<HomeController> {
                                   controller.deleteNoteTable();
                                   Get.back();
                                 },
-                                titleText: AppConstants.clearAllNotes,
+                                titleText: AppStrings.clearAllNotes,
                               );
                             },
-                            child: const Text(
-                              AppConstants.clearAll,
+                            child:  Text(
+                              AppStrings.clearAll,
                               style: TextStyle(
-                                color: ColorCodes.teal,
+                                color: Theme.of(context).colorScheme.onSurface,
                                 fontFamily: poppins,
                                 fontSize: 12.5,
                               ),
@@ -485,9 +480,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
+                SizedBox(height: 10.h),
                 GetBuilder<HomeController>(
                   builder: (controller) {
                     return FutureBuilder<List<Map<String, dynamic>>>(
@@ -495,7 +488,8 @@ class HomeView extends GetView<HomeController> {
                       builder: (context, snapshot) {
                         if (snapshot.hasError) {
                           return Center(
-                              child: Text('Error: ${snapshot.error}'));
+                            child: Text('Error: ${snapshot.error}'),
+                          );
                         } else if (!snapshot.hasData ||
                             snapshot.data!.isEmpty) {
                           if (snapshot.connectionState ==
@@ -503,18 +497,14 @@ class HomeView extends GetView<HomeController> {
                               controller.isSearch == false) {
                             return const Center(
                               child: CircularProgressIndicator(
-                                color: ColorCodes.teal,
+                                color: ColorCodes.purple,
                               ),
                             );
                           } else {
                             return SingleChildScrollView(
                               child: controller.isSearch == false
-                                  ? const Center(
-                                      child: NoHistoryWidget(),
-                                    )
-                                  : const Center(
-                                      child: NoSearchWidget(),
-                                    ),
+                                  ? const Center(child: NoHistoryWidget())
+                                  : const Center(child: NoSearchFoundWidget()),
                             );
                           }
                         } else {
@@ -529,22 +519,22 @@ class HomeView extends GetView<HomeController> {
                             itemCount: reversedData.length,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              mainAxisExtent: 220,
-                              mainAxisSpacing: 2,
-                              crossAxisSpacing: 2,
-                            ),
+                                  crossAxisCount: 2,
+                                  mainAxisExtent: 220,
+                                  mainAxisSpacing: 2,
+                                  crossAxisSpacing: 2,
+                                ),
                             itemBuilder: (context, index) {
                               /// Change Date Formate
                               String createdAt =
                                   reversedData[index]["createdAt"] ?? "";
 
-                              DateTime dateTime =
-                                  DateFormat("EEE, M/d/yyyy hh:mm:ss a")
-                                      .parse(createdAt);
-                              String formattedDate =
-                                  DateFormat("EEE, yyyy/MM/dd hh:mm a")
-                                      .format(dateTime);
+                              DateTime dateTime = DateFormat(
+                                "EEE, M/d/yyyy hh:mm:ss a",
+                              ).parse(createdAt);
+                              String formattedDate = DateFormat(
+                                "EEE, yyyy/MM/dd hh:mm a",
+                              ).format(dateTime);
 
                               return GestureDetector(
                                 onTap: () {
@@ -553,8 +543,8 @@ class HomeView extends GetView<HomeController> {
                                     arguments: {
                                       "id": reversedData[index]["id"],
                                       "title": reversedData[index]["title"],
-                                      "description": reversedData[index]
-                                          ["description"],
+                                      "description":
+                                          reversedData[index]["description"],
                                     },
                                   );
                                 },
@@ -568,8 +558,9 @@ class HomeView extends GetView<HomeController> {
                                     width: 200,
                                     decoration: BoxDecoration(
                                       color: ColorCodes.background,
-                                      borderRadius:
-                                          BorderRadius.circular(radius),
+                                      borderRadius: BorderRadius.circular(
+                                        radius,
+                                      ),
                                     ),
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -582,15 +573,13 @@ class HomeView extends GetView<HomeController> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          SizedBox(
-                                            height: 10.h,
-                                          ),
+                                          SizedBox(height: 10.h),
                                           Row(
                                             children: [
                                               Expanded(
-                                                child: CustomText(
-                                                  text: reversedData[index]
-                                                          ["title"] ??
+                                                child: CommonText(
+                                                  text:
+                                                      reversedData[index]["title"] ??
                                                       "",
                                                   maxLines: 1,
                                                   overflow:
@@ -610,30 +599,24 @@ class HomeView extends GetView<HomeController> {
                                                     child: IconButton(
                                                       padding: EdgeInsets.zero,
                                                       onPressed: () {
-                                                        controller
-                                                            .toggleFavorite(
-                                                                reversedData[
-                                                                        index]
-                                                                    ["id"],
-                                                                reversedData[
-                                                                        index][
-                                                                    "favorite"]);
+                                                        controller.toggleFavorite(
+                                                          reversedData[index]["id"],
+                                                          reversedData[index]["favorite"],
+                                                        );
                                                       },
-                                                      icon: CustomIcon(
-                                                        icon: reversedData[
-                                                                        index][
-                                                                    "favorite"] ==
+                                                      icon: CommonmIcon(
+                                                        icon:
+                                                            reversedData[index]["favorite"] ==
                                                                 1
                                                             ? Icons.star
                                                             : Icons.star_border,
                                                         size: 18,
-                                                        color: reversedData[
-                                                                        index][
-                                                                    "favorite"] ==
+                                                        color:
+                                                            reversedData[index]["favorite"] ==
                                                                 1
                                                             ? ColorCodes.orange
                                                             : ColorCodes
-                                                                .blueGray,
+                                                                  .blueGray,
                                                       ),
                                                     ),
                                                   );
@@ -646,16 +629,17 @@ class HomeView extends GetView<HomeController> {
                                                   padding: EdgeInsets.zero,
                                                   onPressed: () {
                                                     deleteDialogBox(
-                                                        onConfirm: () {
-                                                          controller.deleteNote(
-                                                              reversedData[
-                                                                  index]["id"]);
-                                                          Get.back();
-                                                        },
-                                                        titleText: AppConstants
-                                                            .deleteNote);
+                                                      onConfirm: () {
+                                                        controller.deleteNote(
+                                                          reversedData[index]["id"],
+                                                        );
+                                                        Get.back();
+                                                      },
+                                                      titleText:
+                                                          AppStrings.deleteNote,
+                                                    );
                                                   },
-                                                  icon: const CustomIcon(
+                                                  icon: const CommonmIcon(
                                                     icon: Icons.delete,
                                                     size: 18,
                                                     color: ColorCodes.grey,
@@ -664,25 +648,23 @@ class HomeView extends GetView<HomeController> {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
-                                            height: 6.h,
-                                          ),
+                                          SizedBox(height: 6.h),
                                           Divider(
                                             height: 0,
                                             thickness: 0.4,
                                             endIndent: 6,
-                                            color: ColorCodes.grey
-                                                .withOpacity(0.5),
+                                            color: ColorCodes.grey.withOpacity(
+                                              0.5,
+                                            ),
                                           ),
-                                          SizedBox(
-                                            height: 15.h,
-                                          ),
+                                          SizedBox(height: 15.h),
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.only(right: 6),
-                                            child: CustomText(
-                                              text: reversedData[index]
-                                                      ["description"] ??
+                                            padding: const EdgeInsets.only(
+                                              right: 6,
+                                            ),
+                                            child: CommonText(
+                                              text:
+                                                  reversedData[index]["description"] ??
                                                   "",
                                               overflow: TextOverflow.ellipsis,
                                               fontFamily: poppins,
@@ -695,17 +677,15 @@ class HomeView extends GetView<HomeController> {
                                           const Spacer(),
                                           Row(
                                             children: [
-                                              CustomIcon(
+                                              CommonmIcon(
                                                 icon: Icons
                                                     .access_time_filled_rounded,
                                                 size: 12,
                                                 color: ColorCodes.primary
                                                     .withOpacity(0.4),
                                               ),
-                                              SizedBox(
-                                                width: 3.w,
-                                              ),
-                                              CustomText(
+                                              SizedBox(width: 3.w),
+                                              CommonText(
                                                 text: formattedDate.toString(),
                                                 overflow: TextOverflow.ellipsis,
                                                 fontFamily: poppins,
@@ -729,9 +709,7 @@ class HomeView extends GetView<HomeController> {
                     );
                   },
                 ),
-                SizedBox(
-                  height: 20.h,
-                ),
+                SizedBox(height: 20.h),
               ],
             ),
           ),

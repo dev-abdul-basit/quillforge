@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:ainotes/app/common/constants/color_consrtant.dart';
 
-class CustomContainer extends Container {
-  CustomContainer({
+class CommonContainer extends Container {
+  CommonContainer({
     super.key,
     this.width,
     this.height,

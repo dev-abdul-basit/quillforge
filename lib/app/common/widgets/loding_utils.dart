@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/common/constants/color_consrtant.dart';
 
-class LoadingUtils {
+import '../constants/app_strings.dart';
+
+class CommonLoderUtils {
   Future<void> startLoading() async {
     return Get.dialog(
       barrierDismissible: false,
@@ -29,7 +31,7 @@ class LoadingUtils {
                   child: Column(
                     children: [
                       const SpinKitPouringHourGlass(
-                        color: ColorCodes.teal,
+                        color: ColorCodes.purple,
                         duration: Duration(milliseconds: 900),
                         strokeWidth: 2,
                       ),
@@ -88,7 +90,7 @@ class LoadingUtils {
                   child: Column(
                     children: [
                       const SpinKitPouringHourGlass(
-                        color: ColorCodes.teal,
+                        color: ColorCodes.purple,
                         duration: Duration(milliseconds: 900),
                         strokeWidth: 2,
                       ),
@@ -105,7 +107,7 @@ class LoadingUtils {
                         height: 10.h,
                       ),
                       const Text(
-                        AppConstants.preparedResponse,
+                        AppStrings.preparedResponse,
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 12),
                       ),

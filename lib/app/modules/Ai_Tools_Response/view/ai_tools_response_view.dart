@@ -5,13 +5,15 @@ import 'package:get/get.dart';
 import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/common/constants/color_consrtant.dart';
 import 'package:ainotes/app/common/constants/font_family_constants.dart';
-import 'package:ainotes/app/common/lists/lists.dart';
+import 'package:ainotes/app/common/lists/language_list.dart';
 import 'package:ainotes/app/common/widgets/app_bar.dart';
 import 'package:ainotes/app/common/widgets/container_widget.dart';
 import 'package:ainotes/app/common/widgets/text_widget.dart';
 import 'package:ainotes/app/modules/Ai_Tools_Response/controller/ai_tools_response_controller.dart';
 import 'package:ainotes/app/modules/Ai_Tools_Response/widget/textfield_widget.dart';
 import 'package:search_choices/search_choices.dart';
+
+import '../../../common/constants/app_strings.dart';
 
 class AiToolsResponseView extends GetView<AiToolsResponseController> {
   const AiToolsResponseView({super.key});
@@ -20,13 +22,13 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      appBar: CustomAppBar(
+      appBar: CommonAppBar(
         elevation: 1,
         shadowColor: ColorCodes.grey,
         color: Theme.of(context).colorScheme.secondaryContainer,
         surfaceTintColor: Theme.of(context).colorScheme.secondaryContainer,
         centerTitle: true,
-        title: CustomText(
+        title: CommonText(
           text: controller.title.toString(),
           fontFamily: poppinsSemiBold,
           fontWeight: FontWeight.bold,
@@ -36,7 +38,7 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
       floatingActionButton: Visibility(
         visible: MediaQuery.of(context).viewInsets.bottom == 0.0,
         child: FloatingActionButton.extended(
-          backgroundColor: ColorCodes.teal,
+          backgroundColor: ColorCodes.purple,
           onPressed: () {
             if (controller.formKey.currentState!.validate()) {
               controller.formKey.currentState!.save();
@@ -68,8 +70,8 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
           },
           label: Padding(
             padding: EdgeInsets.symmetric(horizontal: 50.w),
-            child: const CustomText(
-              text: AppConstants.generate,
+            child: const CommonText(
+              text: AppStrings.generate,
               fontColor: ColorCodes.white,
               fontWeight: FontWeight.bold,
               fontSize: 16,
@@ -88,7 +90,7 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                 SizedBox(
                   height: 30.h,
                 ),
-                CustomText(
+                CommonText(
                   text: controller.info.toString(),
                   fontFamily: poppins,
                   fontSize: 14,
@@ -97,8 +99,8 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                 SizedBox(
                   height: 20.h,
                 ),
-                const CustomText(
-                  text: AppConstants.selectLanguage,
+                const CommonText(
+                  text: AppStrings.selectLanguage,
                   fontFamily: poppinsSemiBold,
                   fontWeight: FontWeight.bold,
                   fontSize: 14,
@@ -106,7 +108,7 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                 SizedBox(
                   height: 5.h,
                 ),
-                CustomContainer(
+                CommonContainer(
                   width: 180,
                   backgroundColor: ColorCodes.background,
                   containerChild: Padding(
@@ -135,8 +137,8 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const CustomText(
-                            text: AppConstants.selectLength,
+                          const CommonText(
+                            text: AppStrings.selectLength,
                             fontFamily: poppinsSemiBold,
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
@@ -146,7 +148,7 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                           ),
                           GetBuilder<AiToolsResponseController>(
                             builder: (controller) {
-                              return CustomContainer(
+                              return CommonContainer(
                                 backgroundColor: ColorCodes.background,
                                 containerChild: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -183,101 +185,101 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                     : const SizedBox(),
                 controller.subheadings!
                     ? TextFieldWidget(
-                        title: AppConstants.subheadings,
+                        title: AppStrings.subheadings,
                         maxLines: 4,
-                        hintText: AppConstants.enterSubheadings,
+                        hintText: AppStrings.enterSubheadings,
                         controller: controller.subheadingsController,
-                        validationMessage: AppConstants.kSubheadings,
+                        validationMessage: AppStrings.kSubheadings,
                       )
                     : const SizedBox(),
                 controller.keywords!
                     ? TextFieldWidget(
-                        title: AppConstants.keywords,
+                        title: AppStrings.keywords,
                         maxLines: 4,
-                        hintText: AppConstants.enterKeywords,
+                        hintText: AppStrings.enterKeywords,
                         controller: controller.keywordsController,
-                        validationMessage: AppConstants.kKeywords,
+                        validationMessage: AppStrings.kKeywords,
                       )
                     : const SizedBox(),
                 controller.product!
                     ? TextFieldWidget(
-                        title: AppConstants.product,
+                        title: AppStrings.product,
                         maxLines: 1,
-                        hintText: AppConstants.enterProduct,
+                        hintText: AppStrings.enterProduct,
                         controller: controller.productController,
-                        validationMessage: AppConstants.kProduct,
+                        validationMessage: AppStrings.kProduct,
                       )
                     : const SizedBox(),
                 controller.description!
                     ? TextFieldWidget(
-                        title: AppConstants.description,
+                        title: AppStrings.description,
                         maxLines: 4,
-                        hintText: AppConstants.enterDescription,
+                        hintText: AppStrings.enterDescription,
                         controller: controller.descriptionController,
-                        validationMessage: AppConstants.kDescription,
+                        validationMessage: AppStrings.kDescription,
                       )
                     : const SizedBox(),
                 controller.name!
                     ? TextFieldWidget(
-                        title: AppConstants.name,
+                        title: AppStrings.name,
                         maxLines: 1,
-                        hintText: AppConstants.enterName,
+                        hintText: AppStrings.enterName,
                         controller: controller.nameController,
-                        validationMessage: AppConstants.kName,
+                        validationMessage: AppStrings.kName,
                       )
                     : const SizedBox(),
                 controller.titled!
                     ? TextFieldWidget(
-                        title: AppConstants.titled,
+                        title: AppStrings.titled,
                         maxLines: 1,
-                        hintText: AppConstants.enterTitled,
+                        hintText: AppStrings.enterTitled,
                         controller: controller.titledController,
-                        validationMessage: AppConstants.kTitled,
+                        validationMessage: AppStrings.kTitled,
                       )
                     : const SizedBox(),
                 controller.company!
                     ? TextFieldWidget(
-                        title: AppConstants.company,
+                        title: AppStrings.company,
                         maxLines: 1,
-                        hintText: AppConstants.enterCompany,
+                        hintText: AppStrings.enterCompany,
                         controller: controller.companyController,
-                        validationMessage: AppConstants.kCompany,
+                        validationMessage: AppStrings.kCompany,
                       )
                     : const SizedBox(),
                 controller.subject!
                     ? TextFieldWidget(
-                        title: AppConstants.subject,
+                        title: AppStrings.subject,
                         maxLines: 4,
-                        hintText: AppConstants.enterSubject,
+                        hintText: AppStrings.enterSubject,
                         controller: controller.subjectController,
-                        validationMessage: AppConstants.kSubject,
+                        validationMessage: AppStrings.kSubject,
                       )
                     : const SizedBox(),
                 controller.position!
                     ? TextFieldWidget(
-                        title: AppConstants.position,
+                        title: AppStrings.position,
                         maxLines: 2,
-                        hintText: AppConstants.enterPosition,
+                        hintText: AppStrings.enterPosition,
                         controller: controller.positionController,
-                        validationMessage: AppConstants.kPosition,
+                        validationMessage: AppStrings.kPosition,
                       )
                     : const SizedBox(),
                 controller.domains!
                     ? TextFieldWidget(
-                        title: AppConstants.domains,
+                        title: AppStrings.domains,
                         maxLines: 4,
-                        hintText: AppConstants.enterDomains,
+                        hintText: AppStrings.enterDomains,
                         controller: controller.domainsController,
-                        validationMessage: AppConstants.kDomains,
+                        validationMessage: AppStrings.kDomains,
                       )
                     : const SizedBox(),
                 controller.content!
                     ? TextFieldWidget(
-                        title: AppConstants.content,
+                        title: AppStrings.content,
                         maxLines: 4,
-                        hintText: AppConstants.enterContent,
+                        hintText: AppStrings.enterContent,
                         controller: controller.contentController,
-                        validationMessage: AppConstants.kContented,
+                        validationMessage: AppStrings.kContented,
                       )
                     : const SizedBox(),
                 controller.tone!
@@ -287,8 +289,8 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                           SizedBox(
                             height: 10.h,
                           ),
-                          const CustomText(
-                            text: AppConstants.toneVoice,
+                          const CommonText(
+                            text: AppStrings.toneVoice,
                             fontFamily: poppinsSemiBold,
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
@@ -309,7 +311,7 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                                             controller.voiceToneType[index];
                                         controller.update();
                                       },
-                                      child: CustomContainer(
+                                      child: CommonContainer(
                                         containerMargin:
                                             const EdgeInsets.all(6),
                                         radius: 20,
@@ -317,12 +319,12 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                                         borderColor:
                                             controller.selectedVoiceTone ==
                                                     index
-                                                ? ColorCodes.teal
+                                                ? ColorCodes.purple
                                                 : ColorCodes.background,
                                         containerChild: Padding(
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 18, vertical: 7),
-                                          child: CustomText(
+                                          child: CommonText(
                                             text:
                                                 controller.voiceToneType[index],
                                             fontWeight:
@@ -333,7 +335,7 @@ class AiToolsResponseView extends GetView<AiToolsResponseController> {
                                             fontColor:
                                                 controller.selectedVoiceTone ==
                                                         index
-                                                    ? ColorCodes.teal
+                                                    ? ColorCodes.purple
                                                     : ColorCodes.primary
                                                         .withOpacity(0.5),
                                           ),

@@ -5,7 +5,7 @@ class AiToolCreateBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(
-      () => AiToolCreateController(),
+          () => AiToolCreateController(),
     );
   }
 }

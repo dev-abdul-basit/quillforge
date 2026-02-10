@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 /// Suggestion Text List
-List askToChatGptQuestion = [
-  "Can you tell me a joke?",
-  "How many planets are in the solar system?",
-  "Can you recommend a good book?",
-  "What is the meaning of life?",
-  "How many planets are in the solar system?",
+List<String> askToChatGptQuestion = [
+  "Can you share a fun fact?",
+  "What are the basics of gravity?",
+  "Can you suggest a useful habit?",
+  "Why do humans seek meaning?",
+  "How does the human brain work?",
 ];
 
 /// Language List

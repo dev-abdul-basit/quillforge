@@ -5,6 +5,8 @@ import 'package:ainotes/app/common/constants/color_consrtant.dart';
 import 'package:ainotes/app/common/constants/font_family_constants.dart';
 import 'package:ainotes/app/common/widgets/text_button_widget.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 /// Delete dialog box
 void deleteDialogBox({
   required final VoidCallback onConfirm,
@@ -40,7 +42,7 @@ void deleteDialogBox({
                       titleText!,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                        color: ColorCodes.teal,
+                        color: ColorCodes.purple,
                         fontSize: 19,
                         fontWeight: FontWeight.bold,
                         fontFamily: poppins,
@@ -61,13 +63,13 @@ void deleteDialogBox({
                     Row(
                       children: [
                         const Spacer(),
-                        CustomTextButton(
-                          text: AppConstants.cancel,
+                        CommonTextButton(
+                          text: AppStrings.cancel,
                           onPressed: () => Get.back(),
                         ),
                         const SizedBox(width: 2),
-                        CustomTextButton(
-                          text: AppConstants.delete,
+                        CommonTextButton(
+                          text: AppStrings.delete,
                           onPressed: onConfirm,
                         ),
                       ],

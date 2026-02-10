@@ -4,8 +4,10 @@ import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/common/constants/font_family_constants.dart';
 import 'package:ainotes/app/common/constants/image_constants.dart';
 
-class NoSearchWidget extends StatelessWidget {
-  const NoSearchWidget({super.key});
+import '../constants/app_strings.dart';
+
+class NoSearchFoundWidget extends StatelessWidget {
+  const NoSearchFoundWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class NoSearchWidget extends StatelessWidget {
         ),
         const Center(
           child: Text(
-            AppConstants.kNoSearch,
+            AppStrings.kNoSearch,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 14,

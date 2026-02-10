@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
-
     final ThemeController themeController = Get.put(ThemeController());
+
 
     return ScreenUtilInit(
       designSize: const Size(414, 896),

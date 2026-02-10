@@ -12,6 +12,8 @@ import 'package:ainotes/app/common/widgets/text_widget.dart';
 import 'package:ainotes/app/modules/ai_tools/controller/ai_tools_controller.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class AiToolsView extends GetView<AiToolsController> {
   const AiToolsView({super.key});
 
@@ -19,14 +21,14 @@ class AiToolsView extends GetView<AiToolsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
-      appBar: CustomAppBar(
+      appBar: CommonAppBar(
         elevation: 1,
         shadowColor: ColorCodes.grey,
         //color: Theme.of(context).colorScheme.secondaryContainer,
         surfaceTintColor: ColorCodes.background,
         centerTitle: false,
-        title: const CustomText(
-          text: AppConstants.aiTools,
+        title: const CommonText(
+          text: AppStrings.aiTools,
           fontFamily: poppinsSemiBold,
           fontWeight: FontWeight.bold,
         ),
@@ -54,14 +56,14 @@ class AiToolsView extends GetView<AiToolsController> {
                                   height: 20.h,
                                 ),
                                 Text(
-                                  controller.selectedFilter != AppConstants.kAll
+                                  controller.selectedFilter != AppStrings.kAll
                                       ? controller.selectedFilter
                                       : aiTools[index]["Category"] ?? '',
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontFamily: poppinsSemiBold,
                                     fontSize: 18,
-                                    color: ColorCodes.teal,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                   ),
                                 ),
                                 SizedBox(
@@ -139,7 +141,7 @@ class AiToolsView extends GetView<AiToolsController> {
                                                 BorderRadius.circular(15),
                                             border: Border.all(
                                               width: 0.3,
-                                              color: ColorCodes.teal
+                                              color: ColorCodes.purple
                                                   .withOpacity(0.3),
                                             ),
                                           ),
@@ -219,8 +221,8 @@ class AiToolsView extends GetView<AiToolsController> {
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   style: TextStyle(
-                                                    color: ColorCodes.primary
-                                                        .withOpacity(0.3),
+                                                    color: Theme.of(context).colorScheme.onSurface
+                                                        .withOpacity(0.6),
                                                   ),
                                                 ),
                                               ],
@@ -272,14 +274,14 @@ class AiToolsView extends GetView<AiToolsController> {
                           onTap: () => controller.setFilter(
                             controller.filter[index],
                           ),
-                          child: CustomContainer(
+                          child: CommonContainer(
                             height: 40,
                             radius: 20,
                             borderWidth: 0,
                             containerMargin: const EdgeInsets.only(right: 10),
                             backgroundColor: controller.selectedFilter ==
                                     controller.filter[index]
-                                ? ColorCodes.teal
+                                ? ColorCodes.purple
                                 : ColorCodes.greyLight,
                             containerChild: Padding(
                               padding: const EdgeInsets.symmetric(
@@ -288,7 +290,7 @@ class AiToolsView extends GetView<AiToolsController> {
                               child: Center(
                                 child: Row(
                                   children: [
-                                    CustomText(
+                                    CommonText(
                                       text: controller.filter[index],
                                       fontFamily: poppins,
 
@@ -300,10 +302,10 @@ class AiToolsView extends GetView<AiToolsController> {
                                           : ColorCodes.primary,
                                     ),
                                     index == 0
-                                        ? CustomText(
+                                        ? CommonText(
                                             text: '',
                                           )
-                                        : CustomText(
+                                        : CommonText(
                                             text:
                                                 " [${aiTools[decrementIndex]["SubCategory"].length.toString()}]",
                                             fontFamily: poppins,

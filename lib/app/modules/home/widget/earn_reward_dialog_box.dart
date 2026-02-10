@@ -9,6 +9,8 @@ import 'package:ainotes/app/common/constants/image_constants.dart';
 import 'package:ainotes/app/common/widgets/container_widget.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 /// Watch Ads to get reward Dialog
 void watchAdsEarnRewardDialogBox({
   required BuildContext context,
@@ -37,7 +39,7 @@ void watchAdsEarnRewardDialogBox({
                     Row(
                       children: [
                         const Spacer(),
-                        CustomContainer(
+                        CommonContainer(
                           height: 40,
                           width: 40,
                           backgroundColor: ColorCodes.surface.withOpacity(0.2),
@@ -46,7 +48,7 @@ void watchAdsEarnRewardDialogBox({
                           containerChild: IconButton(
                             color: ColorCodes.surface.withOpacity(0.2),
                             focusColor: ColorCodes.surface.withOpacity(0.2),
-                            splashColor: Colors.teal,
+                            splashColor: Colors.purple,
                             iconSize: 19,
                             constraints: const BoxConstraints(
                                 maxHeight: 40, maxWidth: 40),
@@ -109,8 +111,8 @@ void watchAdsEarnRewardDialogBox({
                           gradient: LinearGradient(
                             colors: [
                               // ColorCodes.background,
-                              ColorCodes.teal.withOpacity(0.1),
-                              ColorCodes.teal.withOpacity(0.1),
+                              ColorCodes.purple.withOpacity(0.1),
+                              ColorCodes.purple.withOpacity(0.1),
                             ],
 
                             begin: FractionalOffset.topRight,
@@ -149,7 +151,7 @@ void watchAdsEarnRewardDialogBox({
                                 onTap: watchAdsOnTap,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: ColorCodes.teal,
+                                    color: ColorCodes.purple,
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
                                       color: ColorCodes.white,
@@ -169,7 +171,7 @@ void watchAdsEarnRewardDialogBox({
                                           width: 6,
                                         ),
                                         Text(
-                                          AppConstants.watchAds,
+                                          AppStrings.watchAds,
                                           style: TextStyle(
                                             fontSize: 10,
                                             color: ColorCodes.white,
@@ -198,13 +200,13 @@ void watchAdsEarnRewardDialogBox({
                           secondaryEnd: Alignment.topLeft,
                           primaryColors: [
                             ColorCodes.purpleDark.withOpacity(0.1),
-                            ColorCodes.teal.withOpacity(0.1),
-                            ColorCodes.teal.withOpacity(0.1),
+                            ColorCodes.purple.withOpacity(0.1),
+                            ColorCodes.purple.withOpacity(0.1),
                           ],
                           secondaryColors: [
                             ColorCodes.purpleDark.withOpacity(0.1),
-                            ColorCodes.teal.withOpacity(0.1),
-                            ColorCodes.teal.withOpacity(0.1),
+                            ColorCodes.purple.withOpacity(0.1),
+                            ColorCodes.purple.withOpacity(0.1),
                           ],
                           child: Container(
                             decoration: BoxDecoration(
@@ -220,7 +222,7 @@ void watchAdsEarnRewardDialogBox({
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        AppConstants.poweredBy,
+                                        AppStrings.poweredBy,
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: montserratRegular,
@@ -229,7 +231,7 @@ void watchAdsEarnRewardDialogBox({
                                         ),
                                       ),
                                       const Text(
-                                        AppConstants.gpt4,
+                                        AppStrings.gpt4,
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: montserratRegular,
@@ -245,7 +247,7 @@ void watchAdsEarnRewardDialogBox({
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       const Text(
-                                        AppConstants.unlimit,
+                                        AppStrings.unlimit,
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: montserratRegular,
@@ -253,7 +255,7 @@ void watchAdsEarnRewardDialogBox({
                                         ),
                                       ),
                                       Text(
-                                        AppConstants.chatMessages,
+                                        AppStrings.chatMessages,
                                         style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: montserratRegular,
@@ -267,7 +269,7 @@ void watchAdsEarnRewardDialogBox({
                                     height: 5.h,
                                   ),
                                   const Text(
-                                    AppConstants.adsFreeExperience,
+                                    AppStrings.adsFreeExperience,
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontFamily: montserratRegular,
@@ -318,7 +320,7 @@ void watchAdsEarnRewardDialogBox({
                                                 width: 10.w,
                                               ),
                                               const Text(
-                                                AppConstants.getPremium,
+                                                AppStrings.getPremium,
                                                 style: TextStyle(
                                                   fontSize: 15,
                                                   color: ColorCodes.white,
@@ -382,7 +384,7 @@ void congratulationDialogBox({
                     Row(
                       children: [
                         const Spacer(),
-                        CustomContainer(
+                        CommonContainer(
                           height: 40,
                           width: 40,
                           backgroundColor: ColorCodes.surface.withOpacity(0.2),
@@ -390,7 +392,7 @@ void congratulationDialogBox({
                           radius: 60,
                           containerChild: IconButton(
                             color: ColorCodes.surface.withOpacity(0.2),
-                            splashColor: Colors.teal,
+                            splashColor: Colors.purple,
                             iconSize: 19,
                             constraints: const BoxConstraints(
                                 maxHeight: 40, maxWidth: 40),
@@ -412,7 +414,7 @@ void congratulationDialogBox({
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      AppConstants.congratulation,
+                      AppStrings.congratulation,
                       style: TextStyle(
                         fontSize: 20,
                         //  fontFamily: roboto,
@@ -421,7 +423,7 @@ void congratulationDialogBox({
                     ),
                     const SizedBox(height: 5),
                     const Text(
-                      AppConstants.collectCredit,
+                      AppStrings.collectCredit,
                       style: TextStyle(
                         fontSize: 10,
                         color: ColorCodes.grey,
@@ -434,7 +436,7 @@ void congratulationDialogBox({
                         onTap: collected,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: ColorCodes.teal,
+                            color: ColorCodes.purple,
                             borderRadius: BorderRadius.circular(10),
                             border: Border.all(
                               color: ColorCodes.white,
@@ -444,7 +446,7 @@ void congratulationDialogBox({
                             padding: EdgeInsets.symmetric(
                                 horizontal: 45, vertical: 12),
                             child: Text(
-                              AppConstants.collect,
+                              AppStrings.collect,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: ColorCodes.white,

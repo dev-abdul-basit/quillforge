@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class CustomIcon extends StatelessWidget {
-  const CustomIcon({
+class CommonmIcon extends StatelessWidget {
+  const CommonmIcon({
     super.key,
     required this.icon,
     this.size,

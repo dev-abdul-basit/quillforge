@@ -15,6 +15,8 @@ import 'package:ainotes/app/modules/Add_Note/widgets/ask_question_gpt.dart';
 import 'package:ainotes/app/modules/Add_Note/widgets/scan_to_text_bottomsheet.dart';
 import 'package:ainotes/app/modules/Add_Note/widgets/speech_to_text_bottomsheet.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class AddNoteView extends GetView<AddNoteController> {
   const AddNoteView({super.key});
 
@@ -35,7 +37,7 @@ class AddNoteView extends GetView<AddNoteController> {
     return FloatingActionButton(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-      backgroundColor: ColorCodes.teal,
+      backgroundColor: ColorCodes.purple,
       onPressed: controller.showAiChat,
       child: Image.asset(
         openAiLogo,
@@ -68,7 +70,7 @@ class AddNoteView extends GetView<AddNoteController> {
   }
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
-    return CustomAppBar(
+    return CommonAppBar(
       leading: _buildBackButton(context),
       leadingWidth: 50,
       titleSpacing: 5,
@@ -85,10 +87,10 @@ class AddNoteView extends GetView<AddNoteController> {
       padding: const EdgeInsets.only(left: 12),
       child: GestureDetector(
         onTap: () => _handleBackPress(),
-        child: CustomContainer(
+        child: CommonContainer(
           backgroundColor: Theme.of(context).colorScheme.surface,
           borderWidth: 0,
-          containerChild: const CustomIcon(icon: Icons.clear),
+          containerChild: const CommonmIcon(icon: Icons.clear),
         ),
       ),
     );
@@ -105,7 +107,7 @@ class AddNoteView extends GetView<AddNoteController> {
 
   Widget _buildTitleField(BuildContext context) {
     return GetBuilder<AddNoteController>(
-      builder: (_) => CustomTextField(
+      builder: (_) => CommonTextField(
         onTap: () {
           controller.hideAiChat();
         },
@@ -114,7 +116,7 @@ class AddNoteView extends GetView<AddNoteController> {
         fillColor: Theme.of(context).colorScheme.background,
         maxLines: 1,
         maxWidth: double.infinity,
-        hintText: AppConstants.title,
+        hintText: AppStrings.title,
         hintStyle: const TextStyle(
           fontFamily: poppins,
           fontWeight: FontWeight.bold,
@@ -122,7 +124,7 @@ class AddNoteView extends GetView<AddNoteController> {
         ),
         style: const TextStyle(
           fontWeight: FontWeight.bold,
-          color: ColorCodes.teal,
+          color: ColorCodes.purple,
         ),
         minHeight: 30,
         borderRadius: 15,
@@ -159,12 +161,12 @@ class AddNoteView extends GetView<AddNoteController> {
           onTap: controller.hideAiChat,
           controller: controller.contentTextController,
           focusNode: controller.contentFocusNode,
-          cursorColor: ColorCodes.teal,
+          cursorColor: ColorCodes.purple,
           maxLines: null,
           decoration: InputDecoration(
             fillColor: Theme.of(context).colorScheme.secondaryContainer,
             filled: true,
-            hintText: AppConstants.hintEnterOrPasteTextHere,
+            hintText: AppStrings.hintEnterOrPasteTextHere,
             hintStyle: const TextStyle(
               fontFamily: poppins,
               color: ColorCodes.grey,
@@ -189,7 +191,7 @@ class AddNoteView extends GetView<AddNoteController> {
         final bool isAnyFieldFocused = controller.contentFocusNode.hasFocus ||
             controller.titleFocusNode.hasFocus;
 
-        return CustomContainer(
+        return CommonContainer(
           height: 50,
           containerChild: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -224,10 +226,10 @@ class AddNoteView extends GetView<AddNoteController> {
     required VoidCallback onPressed,
     bool rotated = false,
   }) {
-    final Widget iconWidget = CustomIcon(
+    final Widget iconWidget = CommonmIcon(
       icon: icon,
       size: 22,
-      color: ColorCodes.teal,
+      color: ColorCodes.purple,
     );
 
     return IconButton(

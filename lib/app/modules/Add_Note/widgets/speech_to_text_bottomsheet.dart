@@ -15,6 +15,8 @@ import 'package:ainotes/app/modules/Add_Note/controller/add_note_controller.dart
 import 'package:ainotes/app/modules/home/view/home_view.dart';
 import 'package:simple_ripple_animation/simple_ripple_animation.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 void showVoiceToTextBottomSheet() {
   Get.bottomSheet(
     isScrollControlled: true,
@@ -54,7 +56,7 @@ Widget _buildCloseButton(AddNoteController controller) {
   return Row(
     children: [
       const Spacer(),
-      CustomContainer(
+      CommonContainer(
         height: 40,
         width: 40,
         backgroundColor: ColorCodes.surface.withOpacity(0.2),
@@ -86,16 +88,16 @@ Widget _buildLoadingState() {
   return Column(
     children: [
       SizedBox(height: 50.h),
-      const SpinKitPouringHourGlassRefined(color: ColorCodes.teal, size: 60),
+      const SpinKitPouringHourGlassRefined(color: ColorCodes.purple, size: 60),
       SizedBox(height: 20.h),
-      const CustomText(
-        text: AppConstants.waiting,
+      const CommonText(
+        text: AppStrings.waiting,
         fontWeight: FontWeight.bold,
         fontFamily: montserratRegular,
         fontSize: 14,
       ),
       SizedBox(height: 8.h),
-      const CustomText(
+      const CommonText(
         text: "Longer audio, longer recognition. Please be patient.",
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
@@ -120,10 +122,10 @@ Widget _buildRecordingState(AddNoteController controller) {
         ),
       ),
       const SizedBox(height: 15),
-      CustomText(
+      CommonText(
         text: controller.isRecordingAudio
-            ? AppConstants.tapAndStop
-            : AppConstants.tapAndSpeak,
+            ? AppStrings.tapAndStop
+            : AppStrings.tapAndSpeak,
         fontWeight: FontWeight.bold,
         fontFamily: montserratRegular,
         fontSize: 14,
@@ -139,14 +141,14 @@ Widget _buildStopButton() {
     child: const CircleAvatar(
       backgroundColor: ColorCodes.red,
       radius: 36,
-      child: CustomIcon(icon: Icons.stop, color: ColorCodes.white, size: 30),
+      child: CommonmIcon(icon: Icons.stop, color: ColorCodes.white, size: 30),
     ),
   );
 }
 
 Widget _buildRecordButton(AddNoteController controller) {
   return RippleAnimation(
-    color: ColorCodes.teal,
+    color: ColorCodes.purple,
     delay: const Duration(milliseconds: 300),
     repeat: true,
     minRadius: 30,
@@ -156,9 +158,9 @@ Widget _buildRecordButton(AddNoteController controller) {
       elevation: 5,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       child: const CircleAvatar(
-        backgroundColor: ColorCodes.teal,
+        backgroundColor: ColorCodes.purple,
         radius: 36,
-        child: CustomIcon(icon: Icons.mic, color: ColorCodes.white),
+        child: CommonmIcon(icon: Icons.mic, color: ColorCodes.white),
       ),
     ),
   );
@@ -167,7 +169,7 @@ Widget _buildRecordButton(AddNoteController controller) {
 Widget _buildTranscriptionResult(AddNoteController controller) {
   return Column(
     children: [
-      CustomContainer(
+      CommonContainer(
         height: 300,
         width: double.infinity,
         borderColor: ColorCodes.grey.withOpacity(0.3),
@@ -198,18 +200,18 @@ Widget _buildCopyButton(AddNoteController controller) {
       Clipboard.setData(ClipboardData(text: controller.transcribedText))
           .then((_) => Fluttertoast.showToast(msg: 'Copied to clipboard!'));
     },
-    child: CustomContainer(
+    child: CommonContainer(
       width: 90,
       backgroundColor: ColorCodes.grey.withOpacity(0.2),
       containerChild: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
           children: [
-             CustomIcon(icon: Icons.copy, color: ColorCodes.primary, size: 14),
+             CommonmIcon(icon: Icons.copy, color: ColorCodes.primary, size: 14),
             SizedBox(width: 10.w),
              Flexible(
               child: Text(
-                AppConstants.copy,
+                AppStrings.copy,
                 style: TextStyle(color: ColorCodes.primary, fontSize: 12),
               ),
             ),
@@ -227,14 +229,14 @@ Widget _buildInsertButton(AddNoteController controller) {
         controller.insertTextIntoNote(controller.transcribedText);
       }
     },
-    child: CustomContainer(
+    child: CommonContainer(
       width: 140,
       backgroundColor: ColorCodes.grey.withOpacity(0.2),
       containerChild: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Row(
           children: [
-             CustomIcon(
+             CommonmIcon(
               icon: Icons.arrow_upward,
               color: ColorCodes.primary,
               size: 14,
@@ -242,7 +244,7 @@ Widget _buildInsertButton(AddNoteController controller) {
             SizedBox(width: 10.w),
              Flexible(
               child: Text(
-                AppConstants.insertBelow,
+                AppStrings.insertBelow,
                 style: TextStyle(color: ColorCodes.primary, fontSize: 12),
               ),
             ),

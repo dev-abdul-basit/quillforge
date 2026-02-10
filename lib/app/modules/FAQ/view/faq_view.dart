@@ -6,15 +6,17 @@ import 'package:ainotes/app/common/widgets/app_bar.dart';
 import 'package:ainotes/app/common/widgets/text_widget.dart';
 import 'package:ainotes/app/modules/FAQ/controller/faq_controller.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class FaqView extends GetView<FaqController> {
   const FaqView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-        title: CustomText(
-          text: AppConstants.kFAQ,
+      appBar: CommonAppBar(
+        title: CommonText(
+          text: AppStrings.kFAQ,
           fontFamily: poppinsSemiBold,
           fontColor: Theme.of(context).colorScheme.primary,
         ),

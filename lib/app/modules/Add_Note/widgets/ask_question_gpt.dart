@@ -9,13 +9,15 @@ import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/common/constants/color_consrtant.dart';
 import 'package:ainotes/app/common/constants/font_family_constants.dart';
 import 'package:ainotes/app/common/constants/image_constants.dart';
-import 'package:ainotes/app/common/lists/lists.dart';
+import 'package:ainotes/app/common/lists/language_list.dart';
 import 'package:ainotes/app/common/widgets/container_widget.dart';
 import 'package:ainotes/app/common/widgets/icon_widget.dart';
 import 'package:ainotes/app/common/widgets/text_field_widget.dart';
 import 'package:ainotes/app/common/widgets/text_widget.dart';
 import 'package:ainotes/app/modules/Add_Note/controller/add_note_controller.dart';
 import 'package:ainotes/app/modules/home/view/home_view.dart';
+
+import '../../../common/constants/app_strings.dart';
 
 
 class AskQuestionGpt extends StatelessWidget {
@@ -25,7 +27,7 @@ class AskQuestionGpt extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AddNoteController>(
       builder: (controller) {
-        return CustomContainer(
+        return CommonContainer(
           width: double.infinity,
           height: _calculateHeight(controller),
           containerChild: Padding(
@@ -61,19 +63,19 @@ class AskQuestionGpt extends StatelessWidget {
           _buildCloseButton(),
           SizedBox(height: 50.h),
           const SpinKitPouringHourGlassRefined(
-            color: ColorCodes.teal,
+            color: ColorCodes.purple,
             size: 60,
           ),
           SizedBox(height: 18.h),
-          const CustomText(
-            text: AppConstants.waiting,
+          const CommonText(
+            text: AppStrings.waiting,
             fontWeight: FontWeight.bold,
             fontFamily: montserratRegular,
             fontSize: 14,
           ),
           SizedBox(height: 3.h),
-          const CustomText(
-            text: AppConstants.preparedResponse,
+          const CommonText(
+            text: AppStrings.preparedResponse,
             fontFamily: montserratRegular,
             fontSize: 12,
           ),
@@ -106,14 +108,14 @@ class AskQuestionGpt extends StatelessWidget {
   }
 
   Widget _buildPromptTextField(AddNoteController controller, double width) {
-    return CustomTextField(
+    return CommonTextField(
       controller: controller.aiPromptController,
       onChanged: (_) => controller.update(),
       minLines: 1,
       maxLines: 2,
       maxWidth: width * 0.78,
       minHeight: 40,
-      hintText: AppConstants.askingChatGpt,
+      hintText: AppStrings.askingChatGpt,
       fillColor: ColorCodes.greyLight,
       hintStyle: const TextStyle(
         fontSize: 14,
@@ -127,7 +129,7 @@ class AskQuestionGpt extends StatelessWidget {
           controller.aiPromptController.clear();
           controller.update();
         },
-        child: CustomIcon(
+        child: CommonmIcon(
           icon: Icons.cancel,
           color: ColorCodes.grey.withOpacity(0.5),
           size: 23,
@@ -139,18 +141,18 @@ class AskQuestionGpt extends StatelessWidget {
   Widget _buildSendOrCloseButton(AddNoteController controller) {
     return controller.aiPromptController.text.isEmpty
         ? IconButton(
-      color: ColorCodes.teal.withOpacity(0.2),
+      color: ColorCodes.purple.withOpacity(0.2),
       onPressed: () {
         controller.hideAiChat();
       },
-      icon: const CustomIcon(icon: Icons.clear, color: ColorCodes.grey),
+      icon: const CommonmIcon(icon: Icons.clear, color: ColorCodes.grey),
     )
         : GestureDetector(
       onTap: () => controller.generateAiResponse(
         prompt: controller.aiPromptController.text,
       ),
       child: CircleAvatar(
-        backgroundColor: ColorCodes.teal,
+        backgroundColor: ColorCodes.purple,
         radius: 22,
         child: Image.asset(
           messageSendIcon,
@@ -175,7 +177,7 @@ class AskQuestionGpt extends StatelessWidget {
                   controller.aiPromptController.text = askToChatGptQuestion[index];
                   controller.update();
                 },
-                child: CustomContainer(
+                child: CommonContainer(
                   width: double.infinity,
                   containerChild: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
@@ -202,10 +204,10 @@ class AskQuestionGpt extends StatelessWidget {
         children: [
           _buildCloseButton(),
           SizedBox(height: 10.h),
-          CustomContainer(
+          CommonContainer(
             height: 300.h,
             width: double.infinity,
-            borderColor: ColorCodes.teal,
+            borderColor: ColorCodes.purple,
             containerChild: Padding(
               padding: const EdgeInsets.all(8.0),
               child: SingleChildScrollView(
@@ -225,7 +227,7 @@ class AskQuestionGpt extends StatelessWidget {
       builder: (controller) => Row(
         children: [
           const Spacer(),
-          CustomContainer(
+          CommonContainer(
             height: 40,
             width: 40,
             backgroundColor: ColorCodes.surface.withOpacity(0.2),
@@ -262,18 +264,18 @@ class AskQuestionGpt extends StatelessWidget {
         Clipboard.setData(ClipboardData(text: controller.aiGeneratedText ?? ''))
             .then((_) => Fluttertoast.showToast(msg: 'Copied to clipboard!'));
       },
-      child: CustomContainer(
+      child: CommonContainer(
         width: 90,
         backgroundColor: ColorCodes.grey.withOpacity(0.2),
         containerChild: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Row(
             children: [
-              CustomIcon(icon: Icons.copy, color: ColorCodes.primary, size: 14),
+              CommonmIcon(icon: Icons.copy, color: ColorCodes.primary, size: 14),
               SizedBox(width: 10.w),
               Flexible(
                 child: Text(
-                  AppConstants.copy,
+                  AppStrings.copy,
                   style: TextStyle(color: ColorCodes.primary, fontSize: 12),
                 ),
               ),
@@ -291,14 +293,14 @@ class AskQuestionGpt extends StatelessWidget {
           controller.insertTextIntoNote(controller.aiGeneratedText!);
         }
       },
-      child: CustomContainer(
+      child: CommonContainer(
         width: 140,
         backgroundColor: ColorCodes.grey.withOpacity(0.2),
         containerChild: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           child: Row(
             children: [
-              CustomIcon(
+              CommonmIcon(
                 icon: Icons.arrow_upward,
                 color: ColorCodes.primary,
                 size: 14,
@@ -306,7 +308,7 @@ class AskQuestionGpt extends StatelessWidget {
               SizedBox(width: 10.w),
               Flexible(
                 child: Text(
-                  AppConstants.insertBelow,
+                  AppStrings.insertBelow,
                   style: TextStyle(color: ColorCodes.primary, fontSize: 12),
                 ),
               ),

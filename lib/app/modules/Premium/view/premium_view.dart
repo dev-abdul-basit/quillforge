@@ -12,6 +12,8 @@ import 'package:ainotes/app/common/widgets/text_widget.dart';
 import 'package:ainotes/app/modules/Premium/controller/premium_controller.dart';
 import 'package:gradient_borders/gradient_borders.dart';
 
+import '../../../common/constants/app_strings.dart';
+
 class PremiumView extends GetView<PremiumController> {
   const PremiumView({super.key});
 
@@ -41,7 +43,7 @@ class PremiumView extends GetView<PremiumController> {
                 SizedBox(
                   height: height * 0.010,
                 ),
-                CustomContainer(
+                CommonContainer(
                   height: 40,
                   width: 40,
                   backgroundColor: Colors.transparent,
@@ -49,7 +51,7 @@ class PremiumView extends GetView<PremiumController> {
                   radius: 60,
                   containerChild: IconButton(
                     color: const Color(0xff4E65FF),
-                    splashColor: ColorCodes.teal,
+                    splashColor: ColorCodes.purple,
                     iconSize: 20,
                     constraints:
                         const BoxConstraints(maxHeight: 40, maxWidth: 40),
@@ -74,8 +76,8 @@ class PremiumView extends GetView<PremiumController> {
                   ),
                 ),
                 const Center(
-                  child: CustomText(
-                    text: AppConstants.unlockPremium,
+                  child: CommonText(
+                    text: AppStrings.unlockPremium,
                     fontFamily: montserratRegular,
                     fontWeight: FontWeight.bold,
                     fontColor: ColorCodes.white,
@@ -95,7 +97,7 @@ class PremiumView extends GetView<PremiumController> {
                             top: 7, bottom: 7, left: width * 0.14),
                         child: Row(
                           children: [
-                            const CustomIcon(
+                            const CommonmIcon(
                               icon: Icons.check_circle,
                               color: ColorCodes.white,
                               size: 20,
@@ -104,7 +106,7 @@ class PremiumView extends GetView<PremiumController> {
                               width: 10.w,
                             ),
                             Flexible(
-                              child: CustomText(
+                              child: CommonText(
                                 text: controller.type[index],
                                 fontWeight: FontWeight.bold,
                                 fontFamily: montserratRegular,
@@ -141,7 +143,7 @@ class PremiumView extends GetView<PremiumController> {
                 ),
                 Card(
                   elevation: 5,
-                  child: CustomContainer(
+                  child: CommonContainer(
                     width: double.infinity,
                     backgroundColor: ColorCodes.white,
                     borderColor: ColorCodes.white,
@@ -192,7 +194,7 @@ class PremiumView extends GetView<PremiumController> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Flexible(
-                                            child: CustomText(
+                                            child: CommonText(
                                               text: controller
                                                   .products[index].title
                                                   .replaceAll(
@@ -209,7 +211,7 @@ class PremiumView extends GetView<PremiumController> {
                                             ),
                                           ),
                                           const Spacer(),
-                                          CustomText(
+                                          CommonText(
                                             text: controller
                                                 .products[index].price,
                                             maxLines: 1,
@@ -243,7 +245,7 @@ class PremiumView extends GetView<PremiumController> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: CustomContainer(
+                  child: CommonContainer(
                     width: double.infinity,
                     borderWidth: 0,
                     radius: 30,
@@ -256,7 +258,7 @@ class PremiumView extends GetView<PremiumController> {
                         onPressed: () => controller.buy(),
                         borderRadius: BorderRadius.circular(0),
                         child: Center(
-                          child: CustomText(
+                          child: CommonText(
                             text: 'Continue',
                             fontWeight: FontWeight.bold,
                             fontColor: ColorCodes.white,

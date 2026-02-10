@@ -4,6 +4,8 @@ import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/common/constants/font_family_constants.dart';
 import 'package:ainotes/app/common/constants/image_constants.dart';
 
+import '../constants/app_strings.dart';
+
 class NoHistoryWidget extends StatelessWidget {
   const NoHistoryWidget({super.key});
 
@@ -27,7 +29,7 @@ class NoHistoryWidget extends StatelessWidget {
           ),
           const Center(
             child: Text(
-              AppConstants.kNoHistory,
+              AppStrings.kNoHistory,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 14,
