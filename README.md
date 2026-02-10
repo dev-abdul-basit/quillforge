@@ -6,7 +6,7 @@ creation, marketing, and daily productivity. The project is designed for product
 monetization boundaries, optimized AI usage, and a scalable modular architecture.
 
 ---
-![Preview](/img.png)
+![Preview](img.png)
 
 ## Overview
 
