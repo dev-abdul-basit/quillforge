@@ -195,7 +195,7 @@ class AiToolsResponseController extends GetxController {
 
           /// the actual request.
           OpenAIChatCompletionModel chatCompletion = await openai.chat.create(
-            model: "gpt-3.5-turbo-1106",
+            model: OpenAIModels.premiumChatModel,
             messages: requestMessages,
             temperature: 0.2,
             maxTokens: 500,
@@ -242,7 +242,7 @@ class AiToolsResponseController extends GetxController {
 
           /// the actual request.
           OpenAIChatCompletionModel chatCompletion = await openai.chat.create(
-            model: "gpt-3.5-turbo-1106",
+            model: OpenAIModels.freeChatModel,
             messages: requestMessages,
             temperature: 0.2,
             maxTokens: 500,

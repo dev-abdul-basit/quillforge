@@ -8,10 +8,15 @@ import 'package:ainotes/app/routes/app_pages.dart';
 import 'package:ainotes/app/theme/theme_controller/theme_controller.dart';
 import 'package:ainotes/app/theme/theme_helper/theme_helper.dart';
 
+import 'app/common/services/config_service.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   await MobileAds.instance.initialize();
+
+  // Initialize remote config BEFORE runApp
+  await ConfigService.instance.initialize();
   runApp(const MyApp());
 }
 

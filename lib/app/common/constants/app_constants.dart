@@ -1,8 +1,28 @@
-/// Open AI Api Key
-String API_KEY =
-    "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";
-String gptModelGPTTurbo1106 = "gpt-3.5-turbo-1106";
-String gptModelGPTpt4OMini = "gpt-3.5-turbo-1106";
+import '../services/config_service.dart';
+
+
+/// OpenAI API Key - now loaded from remote config
+/// @deprecated Direct access removed. Use ConfigService.instance.apiKey or ApiClient
+String get API_KEY => ConfigService.instance.apiKey;
+
+/// OpenAI Models - now loaded from remote config
+class OpenAIModels {
+  static String get premiumChatModel => ConfigService.instance.premiumChatModel;
+  static String get freeChatModel => ConfigService.instance.freeChatModel;
+  static String get audioTranscriptionModel => ConfigService.instance.audioModel;
+
+  // Legacy constants for backward compatibility
+  static const String gpt4o = "gpt-4o";
+  static const String gpt4oMini = "gpt-4o-mini";
+  static const String gpt35Turbo = "gpt-3.5-turbo-1106";
+  static const String whisper1 = "whisper-1";
+}
+
+/// @deprecated Use OpenAIModels.gpt35Turbo instead
+String gptModelGPTTurbo1106 = OpenAIModels.gpt35Turbo;
+
+/// @deprecated Use OpenAIModels.gpt4oMini instead
+String gptModelGPTpt4OMini = OpenAIModels.gpt4oMini;
 
 /// In App Purchase Subscription for Android
 const androidInAppPurchaseIdWeekly = "Add weekly premium key for android";
@@ -14,12 +34,9 @@ const iOSInAppPurchaseIdWeekly = "Add weekly premium key for ios";
 const iOSInAppPurchaseIdMonthly = "Add monthly premium key for ios";
 const iOSInAppPurchaseIdYearly = "Add yearly premium key for ios";
 
-/// Privacy Policy Link
-const privacyPolicyUrl = "";
-
-/// Term And Condition Link
-const termsAndConditionUrl = "";
-
+/// Privacy Policy & Terms URLs
+const privacyPolicyUrl = "https://www.developermatic.com/privacy-policy";
+const termsAndConditionUrl = "https://www.developermatic.com/terms-and-conditions";
 const double radius = 15;
 
 /// kFAQString
