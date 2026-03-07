@@ -25,9 +25,9 @@ String gptModelGPTTurbo1106 = OpenAIModels.gpt35Turbo;
 String gptModelGPTpt4OMini = OpenAIModels.gpt4oMini;
 
 /// In App Purchase Subscription for Android
-const androidInAppPurchaseIdWeekly = "Add weekly premium key for android";
-const androidInAppPurchaseIdMonthly = "Add monthly premium key for android";
-const androidInAppPurchaseIdYearly = "Add yearly premium key for android";
+const androidInAppPurchaseIdWeekly = "quillforgeweekly";
+const androidInAppPurchaseIdMonthly = "quillforgemonthly";
+const androidInAppPurchaseIdYearly = "quillforgeyearly";
 
 /// In App Purchase Subscription for IOS
 const iOSInAppPurchaseIdWeekly = "Add weekly premium key for ios";
@@ -35,8 +35,8 @@ const iOSInAppPurchaseIdMonthly = "Add monthly premium key for ios";
 const iOSInAppPurchaseIdYearly = "Add yearly premium key for ios";
 
 /// Privacy Policy & Terms URLs
-const privacyPolicyUrl = "https://www.developermatic.com/privacy-policy";
-const termsAndConditionUrl = "https://www.developermatic.com/terms-and-conditions";
+const privacyPolicyUrl = "https://developermatic.com/apps/quillforge/privacy/";
+const termsAndConditionUrl = "https://developermatic.com/apps/quillforge/terms/";
 const double radius = 15;
 
 /// kFAQString

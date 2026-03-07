@@ -60,7 +60,7 @@ class AppStrings {
 
 
   /// PREMIUM SCREEN CONSTANT ------------------------
-  static const unlockPremium = "Unlock premium GptNotes";
+  static const unlockPremium = "Unlock premium QuillForge Ai Notes";
   static const Gpt4 = "Gpt-4 Technology";
   static const socialAssistant = "AI Social Assistant";
   static const unlimited = "Unlimited Chat with AI";

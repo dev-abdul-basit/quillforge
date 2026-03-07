@@ -119,17 +119,12 @@ class SettingView extends GetView<SettingController> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        ColorCodes.purpleLight.withOpacity(0.2),
-                        ColorCodes.purple.withOpacity(0.2),
-                      ],
-                    ),
+                    gradient: ColorCodes.primaryGradientSubtle,
                     borderRadius: BorderRadius.circular(14),
                   ),
                   child: Icon(
                     CupertinoIcons.sparkles,
-                    color: ColorCodes.purple,
+                    color: isDark ? Colors.white60 : ColorCodes.purple,
                     size: 26,
                   ),
                 ),
@@ -157,7 +152,7 @@ class SettingView extends GetView<SettingController> {
                               fontFamily: poppins,
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
-                              color: ColorCodes.purple,
+                              color: isDark ? Colors.white70 : ColorCodes.purple,
                             ),
                           ),
                           Text(
@@ -165,7 +160,7 @@ class SettingView extends GetView<SettingController> {
                             style: TextStyle(
                               fontFamily: poppins,
                               fontSize: 16,
-                              color: isDark ? Colors.white30 : Colors.black26,
+                              color: isDark ? Colors.white54 : Colors.black54,
                             ),
                           ),
                         ],
@@ -188,7 +183,7 @@ class SettingView extends GetView<SettingController> {
                   Icon(
                     CupertinoIcons.gift,
                     size: 14,
-                    color: ColorCodes.purple,
+                    color: isDark ? Colors.white60 : ColorCodes.purple,
                   ),
                   SizedBox(width: 6.w),
                   Text(
@@ -196,7 +191,7 @@ class SettingView extends GetView<SettingController> {
                     style: TextStyle(
                       fontFamily: poppins,
                       fontSize: 12,
-                      color: ColorCodes.purple,
+                      color: isDark ? Colors.white60 : ColorCodes.purple,
                     ),
                   ),
                 ],
@@ -209,9 +204,7 @@ class SettingView extends GetView<SettingController> {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [ColorCodes.purpleLight, ColorCodes.purple],
-                  ),
+                  gradient: ColorCodes.primaryGradientDiagonal,
                   borderRadius: BorderRadius.circular(14),
                   boxShadow: [
                     BoxShadow(

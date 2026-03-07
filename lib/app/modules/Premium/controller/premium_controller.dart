@@ -9,6 +9,7 @@ import 'package:ainotes/app/Pref/share_pref.dart';
 import 'package:ainotes/app/common/constants/app_constants.dart';
 import 'package:ainotes/app/routes/app_pages.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../common/constants/app_strings.dart';
 
@@ -28,12 +29,12 @@ class PremiumController extends GetxController
       ? {
           androidInAppPurchaseIdWeekly,
           androidInAppPurchaseIdMonthly,
-          androidInAppPurchaseIdYearly
+          androidInAppPurchaseIdYearly,
         }
       : {
           iOSInAppPurchaseIdWeekly,
           iOSInAppPurchaseIdMonthly,
-          iOSInAppPurchaseIdYearly
+          iOSInAppPurchaseIdYearly,
         };
 
   List<ProductDetails> products = [];
@@ -52,9 +53,7 @@ class PremiumController extends GetxController
         streamSubscription.cancel();
       },
       onError: (error) {
-        Fluttertoast.showToast(
-          msg: "some thing went wrong",
-        );
+        Fluttertoast.showToast(msg: "some thing went wrong");
       },
     );
 
@@ -74,27 +73,22 @@ class PremiumController extends GetxController
   listenToPurchase(List<ProductDetails> purchaseDetailsList) {
     purchaseDetailsList.forEach(
       (PurchaseDetails purchaseDetails) async {
-        if (purchaseDetails.status == PurchaseStatus.pending) {
-          Fluttertoast.showToast(
-            msg: "pending",
-          );
-        } else if (purchaseDetails.status == PurchaseStatus.error) {
-          Fluttertoast.showToast(
-            msg: "error",
-          );
-        } else if (purchaseDetails.status == PurchaseStatus.purchased) {
-          Fluttertoast.showToast(
-            msg: "purchased",
-          );
-        }
-      } as void Function(ProductDetails element),
+            if (purchaseDetails.status == PurchaseStatus.pending) {
+              Fluttertoast.showToast(msg: "pending");
+            } else if (purchaseDetails.status == PurchaseStatus.error) {
+              Fluttertoast.showToast(msg: "error");
+            } else if (purchaseDetails.status == PurchaseStatus.purchased) {
+              Fluttertoast.showToast(msg: "purchased");
+            }
+          }
+          as void Function(ProductDetails element),
     );
   }
 
   initStore() async {
     final bool isAvailable = await InAppPurchase.instance.isAvailable();
-    ProductDetailsResponse productDetailsResponse =
-        await inAppPurchase.queryProductDetails(ids);
+    ProductDetailsResponse productDetailsResponse = await inAppPurchase
+        .queryProductDetails(ids);
     if (productDetailsResponse.error == null) {
       if (kDebugMode) {
         print("loading Product$productDetailsResponse");
@@ -115,42 +109,35 @@ class PremiumController extends GetxController
     DateTime yearLater = DateTime(date.year + 1, date.month, date.day);
 
     if (products.isNotEmpty) {
-      final PurchaseParam param =
-          PurchaseParam(productDetails: products[selected]);
+      final PurchaseParam param = PurchaseParam(
+        productDetails: products[selected],
+      );
       inAppPurchase.buyConsumable(purchaseParam: param);
-      InAppPurchase.instance.purchaseStream.listen(
-        (event) {
-          if (event[0].status == PurchaseStatus.purchased ||
-              event[1].status == PurchaseStatus.purchased ||
-              event[2].status == PurchaseStatus.purchased) {
-            if (Platform.isIOS) {
-              if (products[selected].id == iOSInAppPurchaseIdWeekly) {
-              } else if (products[selected].id == iOSInAppPurchaseIdMonthly) {
-              } else if (products[selected].id == iOSInAppPurchaseIdYearly) {}
-            } else {
-              if (products[selected].id == androidInAppPurchaseIdWeekly) {
-                storeDate(weekLater.toString());
-              } else if (products[selected].id ==
-                  androidInAppPurchaseIdMonthly) {
-                storeDate(monthLater.toString());
-              } else if (products[selected].id ==
-                  androidInAppPurchaseIdYearly) {
-                storeDate(yearLater.toString());
-              }
+      InAppPurchase.instance.purchaseStream.listen((event) {
+        if (event[0].status == PurchaseStatus.purchased ||
+            event[1].status == PurchaseStatus.purchased ||
+            event[2].status == PurchaseStatus.purchased) {
+          if (Platform.isIOS) {
+            if (products[selected].id == iOSInAppPurchaseIdWeekly) {
+            } else if (products[selected].id == iOSInAppPurchaseIdMonthly) {
+            } else if (products[selected].id == iOSInAppPurchaseIdYearly) {}
+          } else {
+            if (products[selected].id == androidInAppPurchaseIdWeekly) {
+              storeDate(weekLater.toString());
+            } else if (products[selected].id == androidInAppPurchaseIdMonthly) {
+              storeDate(monthLater.toString());
+            } else if (products[selected].id == androidInAppPurchaseIdYearly) {
+              storeDate(yearLater.toString());
             }
-          } else if (event[0].status == PurchaseStatus.canceled ||
-              event[1].status == PurchaseStatus.canceled ||
-              event[2].status == PurchaseStatus.canceled) {
-            Fluttertoast.showToast(
-              msg: "Something went wrong",
-            );
           }
-        },
-      );
+        } else if (event[0].status == PurchaseStatus.canceled ||
+            event[1].status == PurchaseStatus.canceled ||
+            event[2].status == PurchaseStatus.canceled) {
+          Fluttertoast.showToast(msg: "Something went wrong");
+        }
+      });
     } else {
-      Fluttertoast.showToast(
-        msg: "No products available for purchase",
-      );
+      Fluttertoast.showToast(msg: "No products available for purchase");
     }
   }
 
@@ -162,8 +149,9 @@ class PremiumController extends GetxController
   }
 
   getDate() async {
-    String premiumDate =
-        await sharePrefService.getStringToSF(key: 'Premium_Date');
+    String premiumDate = await sharePrefService.getStringToSF(
+      key: 'Premium_Date',
+    );
     if (premiumDate.isNotEmpty) {
       DateTime fin = DateTime.parse(premiumDate);
       DateTime date = DateTime.now();
@@ -180,26 +168,70 @@ class PremiumController extends GetxController
     }
   }
 
-  List<String> premiumType = [
-    "Unlimited Weekly",
-    "SPECIAL OFFER",
-  ];
-
-  List<String> premiumPrice = [
-    "400",
-    "3000",
-  ];
-
   void onSelected(index) {
     selected = index;
     update();
   }
 
+  // Sorted products getter
+  List<ProductDetails> get sortedProducts {
+    if (products.isEmpty) return [];
+    final sorted = List<ProductDetails>.from(products);
+    sorted.sort((a, b) {
+      return _getPlanOrder(a.id).compareTo(_getPlanOrder(b.id));
+    });
+    return sorted;
+  }
+
+  int _getPlanOrder(String id) {
+    if (id.contains('weekly')) return 0;
+    if (id.contains('monthly')) return 1;
+    if (id.contains('yearly')) return 2;
+    return 3;
+  }
+
+  bool isMonthlyPlan(String id) {
+    return id.contains('monthly');
+  }
+
+  String getCleanTitle(String id) {
+    if (id.contains('weekly')) return 'Weekly';
+    if (id.contains('monthly')) return 'Monthly';
+    if (id.contains('yearly')) return 'Yearly';
+    return 'Premium';
+  }
+
+  String? getSavingsText(String id) {
+    if (id.contains('monthly')) return 'Save 40% vs weekly';
+    if (id.contains('yearly')) return 'Save 70% vs weekly';
+    return null;
+  }
+
+  int getActualIndex(ProductDetails product) {
+    return products.indexOf(product);
+  }
+
+  void restorePurchases() {
+    inAppPurchase.restorePurchases();
+  }
+
+  void openTerms() async {
+    final termsAndConditionUri = Uri.parse(termsAndConditionUrl);
+    if (!await launchUrl(termsAndConditionUri)) {
+      throw Exception('Could not launch $termsAndConditionUri');
+    }
+  }
+
+  void openPrivacy() async {
+    final privacyPolicyUri = Uri.parse(privacyPolicyUrl);
+    if (!await launchUrl(privacyPolicyUri)) {
+      throw Exception('Could not launch $privacyPolicyUri');
+    }
+  }
+
   @override
   void onClose() {
     streamSubscription.cancel();
-
-    // TODO: implement onClose
     super.onClose();
   }
 }

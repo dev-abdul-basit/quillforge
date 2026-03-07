@@ -4,6 +4,7 @@ import 'package:ainotes/app/common/constants/image_constants.dart';
 import 'package:ainotes/app/common/widgets/text_widget.dart';
 import 'package:ainotes/app/modules/Splash/controller/splash_controller.dart';
 
+import '../../../common/constants/color_consrtant.dart';
 import '../../../common/constants/font_family_constants.dart';
 
 class SplashScreen extends GetView<SplashController> {
@@ -15,17 +16,17 @@ class SplashScreen extends GetView<SplashController> {
     Get.put(SplashController());
 
     return Scaffold(
-      backgroundColor: const Color(0xff7209B7), // Dark splash bg
+      backgroundColor: ColorCodes.purple, // Dark splash bg
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             // App Logo
-            Image.asset(
-              appIcon,
-              height: 140,
-              width: 140,
-            ),
+            // Image.asset(
+            //   appIcon,
+            //   height: 140,
+            //   width: 140,
+            // ),
             const SizedBox(height: 16),
             // App Name
             const CommonText(

@@ -789,11 +789,7 @@ class HomeView extends GetView<HomeController> {
               width: 60,
               height: 60,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [ColorCodes.purpleLight, ColorCodes.purple],
-                ),
+                gradient: ColorCodes.primaryGradientDiagonal,
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(

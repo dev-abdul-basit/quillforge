@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:crypto/crypto.dart';
@@ -22,7 +23,7 @@ class ConfigService {
 
   // IMPORTANT: Replace with your generated secret key
   // This should match the SECRET_KEY in get-config.php
-  static const String _secretKey = '26df36f58b88e6f0a0689b4dadb8b4260f24327ffdfbd58bebe0184108efc0ea';
+  final String _secretKey = dotenv.env['SECRET_KEY'] ?? '';
 
   RemoteConfigModel? _config;
   bool _isInitialized = false;

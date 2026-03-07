@@ -14,149 +14,130 @@ class PremiumView extends GetView<PremiumController> {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return Scaffold(
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              ColorCodes.purpleLight,
-              ColorCodes.purple,
-              const Color(0xFF4A148C),
-            ],
-          ),
-        ),
+        decoration: const BoxDecoration(
+        gradient: ColorCodes.primaryGradientVertical,
+      ),
         child: SafeArea(
-          child: Column(
-            children: [
-              _buildHeader(context),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 20.h),
-                      _buildPremiumIcon(),
-                      SizedBox(height: 24.h),
-                      _buildTitle(),
-                      SizedBox(height: 24.h),
-                      _buildFeaturesList(),
-                      SizedBox(height: 32.h),
-                      _buildSubscriptionOptions(context, isDark),
-                      SizedBox(height: 24.h),
-                    ],
-                  ),
-                ),
-              ),
-              _buildContinueButton(context),
-              SizedBox(height: 16.h),
-            ],
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              children: [
+                _buildHeader(),
+                SizedBox(height: 16.h),
+                _buildCompactHero(),
+                SizedBox(height: 20.h),
+                // _buildFeatureChips(),
+                _buildFeaturesList(),
+                SizedBox(height: 24.h),
+                Expanded(child: _buildSubscriptionPlans()),
+                _buildContinueButton(),
+                SizedBox(height: 8.h),
+                _buildFooterLinks(),
+                SizedBox(height: 12.h),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      child: Row(
-        children: [
-          GestureDetector(
-            onTap: () => Get.back(),
-            child: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.15),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: const Icon(
-                CupertinoIcons.xmark,
-                size: 20,
-                color: Colors.white,
-              ),
+  Widget _buildHeader() {
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () => Get.back(),
+          child: Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.12),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Icon(
+              CupertinoIcons.xmark,
+              size: 18,
+              color: Colors.white70,
             ),
           ),
-          const Spacer(),
-          // Restore purchases button
-          GestureDetector(
-            onTap: () {
-              // TODO: Implement restore purchases
-            },
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(20),
+        ),
+        const Spacer(),
+        // GestureDetector(
+        //   onTap: () => controller.restorePurchases(),
+        //   child: Text(
+        //     'Restore',
+        //     style: TextStyle(
+        //       fontFamily: poppins,
+        //       fontSize: 13,
+        //       color: Colors.white60,
+        //     ),
+        //   ),
+        // ),
+      ],
+    );
+  }
+
+  Widget _buildCompactHero() {
+    return Row(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.15),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Image.asset(
+            premiumIcon,
+            color: Colors.white,
+            width: 32.w,
+            height: 32.h,
+          ),
+        ),
+        SizedBox(width: 16.w),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                AppStrings.unlockPremium,
+                style: TextStyle(
+                  fontFamily: poppins,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  color: Colors.white,
+                ),
               ),
-              child: Text(
-                'Restore',
+              SizedBox(height: 4.h),
+              Text(
+                'Unlimited access to all features',
                 style: TextStyle(
                   fontFamily: poppins,
                   fontSize: 13,
                   color: Colors.white70,
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildPremiumIcon() {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.15),
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: Image.asset(
-        premiumIcon,
-        color: Colors.white,
-        width: 80.w,
-        height: 80.h,
-      ),
-    );
-  }
-
-  Widget _buildTitle() {
-    return Column(
-      children: [
-        Text(
-          AppStrings.unlockPremium,
-          style: TextStyle(
-            fontFamily: poppins,
-            fontWeight: FontWeight.bold,
-            fontSize: 26,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 8.h),
-        Text(
-          'Get unlimited access to all features',
-          style: TextStyle(
-            fontFamily: poppins,
-            fontSize: 14,
-            color: Colors.white70,
+            ],
           ),
         ),
       ],
     );
   }
+
+  Widget _buildFeatureChips() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        _buildChip(CupertinoIcons.sparkles, 'GPT-4o'),
+        _buildChip(CupertinoIcons.infinite, 'Unlimited'),
+        _buildChip(CupertinoIcons.nosign, 'No Ads'),
+      ],
+    );
+  }
+
 
   Widget _buildFeaturesList() {
     return Container(
@@ -219,155 +200,160 @@ class PremiumView extends GetView<PremiumController> {
       ),
     );
   }
+  Widget _buildChip(IconData icon, String label) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.white24),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: Colors.white70),
+          SizedBox(width: 6.w),
+          Text(
+            label,
+            style: TextStyle(
+              fontFamily: poppins,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
-  Widget _buildSubscriptionOptions(BuildContext context, bool isDark) {
+  Widget _buildSubscriptionPlans() {
     return GetBuilder<PremiumController>(
       builder: (_) {
         if (controller.products.isEmpty) {
-          return Container(
-            padding: EdgeInsets.all(20.w),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Center(
-              child: Column(
-                children: [
-                  CircularProgressIndicator(
-                    color: ColorCodes.purple,
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(
+                    color: Colors.white70,
                     strokeWidth: 2,
                   ),
-                  SizedBox(height: 12.h),
-                  Text(
-                    'Loading plans...',
-                    style: TextStyle(
-                      fontFamily: poppins,
-                      fontSize: 14,
-                      color: Colors.black45,
-                    ),
+                ),
+                SizedBox(height: 12.h),
+                Text(
+                  'Loading plans...',
+                  style: TextStyle(
+                    fontFamily: poppins,
+                    fontSize: 13,
+                    color: Colors.white54,
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         }
 
-        return Container(
-          padding: EdgeInsets.all(12.w),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 20,
-                offset: const Offset(0, 10),
-              ),
-            ],
-          ),
-          child: Row(
-            children: List.generate(
-              controller.products.length,
-                  (index) => Expanded(
-                child: _buildPlanCard(index),
-              ),
-            ),
-          ),
+        final sortedProducts = controller.sortedProducts;
+
+        return Column(
+          children: List.generate(sortedProducts.length, (index) {
+            final product = sortedProducts[index];
+            final actualIndex = controller.getActualIndex(product);
+            return Padding(
+              padding: EdgeInsets.only(bottom: 10.h),
+              child: _buildPlanTile(product, actualIndex),
+            );
+          }),
         );
       },
     );
   }
 
-  Widget _buildPlanCard(int index) {
-    final isSelected = controller.selected == index;
-    final product = controller.products[index];
-
-    // Clean up title
-    String title = product.title
-        .replaceAll("(com.aichatbot.aichatbot (unreviewed))", "")
-        .trim();
+  Widget _buildPlanTile(dynamic product, int actualIndex) {
+    final isSelected = controller.selected == actualIndex;
+    final isMonthly = controller.isMonthlyPlan(product.id);
+    final title = controller.getCleanTitle(product.id);
+    final savings = controller.getSavingsText(product.id);
 
     return GestureDetector(
-      onTap: () => controller.onSelected(index),
+      onTap: () => controller.onSelected(actualIndex),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        margin: EdgeInsets.symmetric(horizontal: 4.w),
-        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 16.h),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
         decoration: BoxDecoration(
-          color: isSelected ? ColorCodes.purple.withOpacity(0.08) : Colors.transparent,
+          color: isSelected ? Colors.white : Colors.white.withOpacity(0.08),
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? ColorCodes.purple : Colors.grey.withOpacity(0.2),
-            width: isSelected ? 2 : 1,
+            color: isSelected
+                ? Colors.transparent
+                : isMonthly
+                ? Colors.amber.withOpacity(0.5)
+                : Colors.white24,
+            width: isMonthly ? 2 : 1,
           ),
+          boxShadow: isSelected
+              ? [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            )
+          ]
+              : null,
         ),
-        child: Column(
+        child: Row(
           children: [
-            // Popular badge for middle option
-            if (index == 1)
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                margin: EdgeInsets.only(bottom: 8.h),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [ColorCodes.purpleLight, ColorCodes.purple],
+            _buildRadioIndicator(isSelected),
+            SizedBox(width: 14.w),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          fontFamily: poppins,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15,
+                          color: isSelected ? Colors.black87 : Colors.white,
+                        ),
+                      ),
+                      if (isMonthly) ...[
+                        SizedBox(width: 8.w),
+                        _buildBestValueBadge(),
+                      ],
+                    ],
                   ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  'BEST VALUE',
-                  style: TextStyle(
-                    fontFamily: poppins,
-                    fontSize: 9,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
-              )
-            else
-              SizedBox(height: 22.h),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontFamily: poppins,
-                fontWeight: FontWeight.w600,
-                fontSize: 12,
-                color: isSelected ? ColorCodes.purple : Colors.black54,
+                  if (savings != null) ...[
+                    SizedBox(height: 2.h),
+                    Text(
+                      savings,
+                      style: TextStyle(
+                        fontFamily: poppins,
+                        fontSize: 11,
+                        color: isSelected
+                            ? ColorCodes.purple
+                            : Colors.greenAccent.shade200,
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
-            SizedBox(height: 8.h),
             Text(
               product.price,
               style: TextStyle(
                 fontFamily: poppins,
                 fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: isSelected ? ColorCodes.purple : Colors.black87,
+                fontSize: 17,
+                color: isSelected ? ColorCodes.purple : Colors.white,
               ),
-            ),
-            // Selection indicator
-            SizedBox(height: 8.h),
-            Container(
-              width: 20,
-              height: 20,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: isSelected ? ColorCodes.purple : Colors.grey.withOpacity(0.3),
-                  width: 2,
-                ),
-                color: isSelected ? ColorCodes.purple : Colors.transparent,
-              ),
-              child: isSelected
-                  ? const Icon(
-                CupertinoIcons.checkmark,
-                size: 12,
-                color: Colors.white,
-              )
-                  : null,
             ),
           ],
         ),
@@ -375,93 +361,115 @@ class PremiumView extends GetView<PremiumController> {
     );
   }
 
-  Widget _buildContinueButton(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () => controller.buy(),
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 18),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.15),
-                    blurRadius: 20,
-                    offset: const Offset(0, 10),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    CupertinoIcons.arrow_right_circle_fill,
-                    size: 22,
-                    color: ColorCodes.purple,
-                  ),
-                  SizedBox(width: 10.w),
-                  Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontFamily: poppins,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 17,
-                      color: ColorCodes.purple,
-                    ),
-                  ),
-                ],
-              ),
+  Widget _buildRadioIndicator(bool isSelected) {
+    return Container(
+      width: 22,
+      height: 22,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: isSelected ? ColorCodes.purple : Colors.white38,
+          width: 2,
+        ),
+        color: isSelected ? ColorCodes.purple : Colors.transparent,
+      ),
+      child: isSelected
+          ? const Icon(
+        CupertinoIcons.checkmark,
+        size: 12,
+        color: Colors.white,
+      )
+          : null,
+    );
+  }
+
+  Widget _buildBestValueBadge() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Colors.amber, Colors.orange],
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        'BEST VALUE',
+        style: TextStyle(
+          fontFamily: poppins,
+          fontSize: 9,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContinueButton() {
+    return GestureDetector(
+      onTap: () => controller.buy(),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Center(
+          child: Text(
+            'Continue',
+            style: TextStyle(
+              fontFamily: poppins,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: ColorCodes.purple,
             ),
           ),
-          SizedBox(height: 12.h),
-          // Terms and privacy links
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // TODO: Link to terms
-                },
-                child: Text(
-                  'Terms of Use',
-                  style: TextStyle(
-                    fontFamily: poppins,
-                    fontSize: 11,
-                    color: Colors.white54,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-              Text(
-                '  •  ',
-                style: TextStyle(
-                  fontSize: 11,
-                  color: Colors.white38,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  // TODO: Link to privacy
-                },
-                child: Text(
-                  'Privacy Policy',
-                  style: TextStyle(
-                    fontFamily: poppins,
-                    fontSize: 11,
-                    color: Colors.white54,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
+    );
+  }
+
+  Widget _buildFooterLinks() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: () => controller.openTerms(),
+          child: Text(
+            'Terms & Conditions',
+            style: TextStyle(
+              fontFamily: poppins,
+              fontSize: 11,
+              color: Colors.white38,
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 12.w),
+          child: Text(
+            '•',
+            style: TextStyle(fontSize: 11, color: Colors.white24),
+          ),
+        ),
+        GestureDetector(
+          onTap: () => controller.openPrivacy(),
+          child: Text(
+            'Privacy Policy',
+            style: TextStyle(
+              fontFamily: poppins,
+              fontSize: 11,
+              color: Colors.white38,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
