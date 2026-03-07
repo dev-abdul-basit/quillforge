@@ -7,6 +7,12 @@ monetization boundaries, optimized AI usage, and a scalable modular architecture
 
 ---
 ![Preview](1.png)
+![Preview](2.png)
+![Preview](3.png)
+![Preview](4.png)
+![Preview](5.png)
+![Preview](6.png)
+![Preview](7.mp4)
 
 ## Overview
 
